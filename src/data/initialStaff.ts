@@ -8,6 +8,7 @@ export const INITIAL_GEOFENCE_SETTINGS: GeofenceSettings = {
   schoolName: 'مدرسة ذكور مدينة اربد الاعدادية الثانية',
   principalName: 'لؤي تيسير نمر الخطيب',
   locationLabel: 'اربد - شارع فوعرا (مدرسة الخطيب)',
+  allowCustomDateForTeachers: true,
 };
 
 // كادر المدرسة المستخرج طبق الأصل من كشف أحوال الموظفين للعام الدراسي 2026-2027

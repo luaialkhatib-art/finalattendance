@@ -139,7 +139,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
     role: 'teacher',
   });
 
-  // Geofence Edit State
+  // Geofence & Calendar Permissions Edit State
   const [geoEdit, setGeoEdit] = useState({
     enabled: settings.enabled,
     latitude: settings.latitude,
@@ -148,6 +148,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
     schoolName: settings.schoolName,
     principalName: settings.principalName,
     locationLabel: settings.locationLabel,
+    allowCustomDateForTeachers: settings.allowCustomDateForTeachers !== false,
   });
   const [geoSaving, setGeoSaving] = useState(false);
   const [geoSuccessMsg, setGeoSuccessMsg] = useState(false);
@@ -163,6 +164,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
       schoolName: settings.schoolName,
       principalName: settings.principalName,
       locationLabel: settings.locationLabel,
+      allowCustomDateForTeachers: settings.allowCustomDateForTeachers !== false,
     });
   }, [settings]);
 
@@ -1602,6 +1604,50 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
             </div>
           </div>
 
+          {/* Calendar Permissions Section for Teachers */}
+          <div className="p-5 rounded-2xl bg-gradient-to-r from-sky-950 via-slate-800 to-indigo-950 border border-sky-600/50 space-y-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-amber-400" />
+                  <h4 className="font-bold text-white text-sm sm:text-base">
+                    خاصية اختيار التاريخ من التقويم للمعلمين (أثر رجعي / إجازات مسبقة)
+                  </h4>
+                </div>
+                <p className="text-xs text-sky-200/80 mt-1 leading-relaxed">
+                  عند تفعيل هذه الميزة: يتمكن المعلم من فتح التقويم في حسابه واختيار أي يوم سابق لتسجيل حضوره أو غيابه بأثر رجعي، أو اختيار تاريخ مستقبلي لتقديم طلب إجازة أو مغادرة مسبقة.
+                  <br />
+                  عند تعطيلها: يقتصر تسجيل المعلم على تاريخ اليوم فقط، مع بقاء صلاحية الأثر الرجعي متاحة للمدير دائماً.
+                </p>
+              </div>
+
+              {/* Toggle Switch */}
+              <div className="flex items-center gap-2.5 shrink-0">
+                <span className="text-xs font-bold text-white">
+                  {geoEdit.allowCustomDateForTeachers ? 'مفعلة للمعلم' : 'معطلة للمعلم'}
+                </span>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setGeoEdit((prev) => ({
+                      ...prev,
+                      allowCustomDateForTeachers: !prev.allowCustomDateForTeachers,
+                    }))
+                  }
+                  className={`w-14 h-8 rounded-full transition-colors relative p-1 ${
+                    geoEdit.allowCustomDateForTeachers ? 'bg-amber-500' : 'bg-slate-700'
+                  }`}
+                >
+                  <div
+                    className={`w-6 h-6 rounded-full bg-white transition-transform ${
+                      geoEdit.allowCustomDateForTeachers ? 'translate-x-0' : '-translate-x-6'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Quick Helper Button: Use Current GPS */}
           <div className="p-4 rounded-2xl bg-sky-950/60 border border-sky-700/40 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-xs text-sky-200 leading-relaxed text-center sm:text-right">
@@ -1627,7 +1673,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
               disabled={geoSaving}
               className="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/20 transition"
             >
-              {geoSaving ? 'جارٍ حفظ الإعدادات...' : 'حفظ إعدادات الموقع الجغرافي'}
+              {geoSaving ? 'جارٍ حفظ الإعدادات...' : 'حفظ إعدادات الموقع وصلاحيات التقويم'}
             </button>
           </div>
         </div>

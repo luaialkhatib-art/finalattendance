@@ -297,7 +297,17 @@ app.post('/api/attendance', (req: Request, res: Response) => {
   }
 
   const now = new Date();
-  const dateStr = customDate || now.toISOString().split('T')[0];
+  const todayStr = now.toISOString().split('T')[0];
+  let dateStr = todayStr;
+
+  if (customDate) {
+    if (recordedBy === 'teacher' && db.settings.allowCustomDateForTeachers === false && customDate !== todayStr) {
+      return res.status(403).json({
+        error: 'خاصية اختيار التاريخ بأثر رجعي أو مستقبلي معطلة حالياً من قبل إدارة المدرسة.',
+      });
+    }
+    dateStr = customDate;
+  }
   const timeStr = now.toTimeString().split(' ')[0];
 
   // Geofence check if recorded by teacher
@@ -549,8 +559,16 @@ app.delete('/api/teachers/:id', (req: Request, res: Response) => {
 
 // Update Geofence Settings
 app.post('/api/settings', (req: Request, res: Response) => {
-  const { enabled, latitude, longitude, radiusMeters, schoolName, principalName, locationLabel } =
-    req.body;
+  const {
+    enabled,
+    latitude,
+    longitude,
+    radiusMeters,
+    schoolName,
+    principalName,
+    locationLabel,
+    allowCustomDateForTeachers,
+  } = req.body;
 
   if (enabled !== undefined) db.settings.enabled = Boolean(enabled);
   if (latitude !== undefined) db.settings.latitude = Number(latitude);
@@ -559,6 +577,8 @@ app.post('/api/settings', (req: Request, res: Response) => {
   if (schoolName !== undefined) db.settings.schoolName = schoolName;
   if (principalName !== undefined) db.settings.principalName = principalName;
   if (locationLabel !== undefined) db.settings.locationLabel = locationLabel;
+  if (allowCustomDateForTeachers !== undefined)
+    db.settings.allowCustomDateForTeachers = Boolean(allowCustomDateForTeachers);
 
   saveDatabase();
   broadcastSSE('SETTINGS_UPDATED', { settings: db.settings });

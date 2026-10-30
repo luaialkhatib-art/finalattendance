@@ -45,6 +45,7 @@ export interface GeofenceSettings {
   schoolName: string;
   principalName: string;
   locationLabel: string;
+  allowCustomDateForTeachers?: boolean; // إمكانية اختيار التاريخ بأثر رجعي أو مستقبلي للمعلم
 }
 
 export interface NotificationItem {

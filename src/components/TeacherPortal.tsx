@@ -35,6 +35,7 @@ interface TeacherPortalProps {
     departureDuration?: string;
     latitude?: number;
     longitude?: number;
+    customDate?: string;
     recordedBy: 'teacher';
   }) => Promise<{ success: boolean; error?: string }>;
   onChangePassword: (newPass: string) => Promise<{ success: boolean; error?: string }>;
@@ -50,6 +51,9 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
 }) => {
   // Tabs: 'attendance' | 'reports' | 'profile'
   const [activeTab, setActiveTab] = useState<'attendance' | 'reports' | 'profile'>('attendance');
+
+  const todayStr = new Date().toISOString().split('T')[0];
+  const [selectedDate, setSelectedDate] = useState<string>(todayStr);
 
   // Form State
   const [selectedStatus, setSelectedStatus] = useState<AttendanceStatus>('حاضر');
@@ -119,6 +123,7 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
         departureDuration: selectedStatus === 'مغادرة' ? departureDuration : undefined,
         latitude: userLocation?.latitude,
         longitude: userLocation?.longitude,
+        customDate: selectedDate,
         recordedBy: 'teacher',
       });
 
@@ -323,43 +328,131 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
 
           {/* Attendance Action Form */}
           <div className="lg:col-span-2 bg-slate-900/80 border border-sky-700/40 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
-            {/* If already recorded today */}
-            {todayRecord && (
-              <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950/70 via-sky-950/60 to-slate-900 border border-emerald-500/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
-                    <CheckCircle className="w-7 h-7" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-emerald-300 font-bold uppercase tracking-wider">
-                      تم تسجيل حضورك لليوم بنجاح
-                    </div>
-                    <div className="text-xl font-black text-white flex items-center gap-2 mt-0.5">
-                      <span>الحالة: {todayRecord.status}</span>
-                      <span className="text-xs font-normal text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-700">
-                        {formatTimeArabic(todayRecord.time)}
-                      </span>
-                    </div>
-                    {todayRecord.notes && (
-                      <div className="text-xs text-slate-300 mt-1">ملاحظة: {todayRecord.notes}</div>
-                    )}
-                  </div>
-                </div>
+            {/* Date Selector Box */}
+            <div className="p-4 rounded-2xl bg-slate-800/80 border border-sky-600/40 space-y-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <label className="text-xs font-bold text-sky-200 flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-cyan-400" />
+                  <span>تاريخ التسجيل (من التقويم):</span>
+                </label>
 
-                <div className="text-xs text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
-                  {todayRecord.location?.withinGeofence
-                    ? '✓ تم التحقق الجغرافي داخل المدرسة'
-                    : 'تسجيل رسمي'}
-                </div>
+                {/* Date Context Badge */}
+                {selectedDate < todayStr ? (
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    🕒 تسجيل بأثر رجعي (تاريخ سابق)
+                  </span>
+                ) : selectedDate > todayStr ? (
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                    📅 تقديم طلب إجازة / مغادرة مسبقة (مستقبلي)
+                  </span>
+                ) : (
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    ✓ دوام اليوم الحالي
+                  </span>
+                )}
               </div>
-            )}
+
+              {settings.allowCustomDateForTeachers !== false ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="flex-1 bg-slate-900 border border-sky-600/50 rounded-xl px-3 py-2 text-white font-mono text-xs sm:text-sm outline-none focus:border-cyan-400"
+                  />
+                  {/* Quick Shortcut Buttons */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedDate(todayStr)}
+                    className={`px-3 py-2 rounded-xl text-xs font-bold transition ${
+                      selectedDate === todayStr
+                        ? 'bg-cyan-500 text-white shadow'
+                        : 'bg-slate-700/80 text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    اليوم
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const d = new Date();
+                      d.setDate(d.getDate() - 1);
+                      setSelectedDate(d.toISOString().split('T')[0]);
+                    }}
+                    className="px-3 py-2 rounded-xl text-xs font-bold bg-slate-700/80 text-slate-300 hover:text-white transition"
+                  >
+                    أمس
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const d = new Date();
+                      d.setDate(d.getDate() + 1);
+                      setSelectedDate(d.toISOString().split('T')[0]);
+                    }}
+                    className="px-3 py-2 rounded-xl text-xs font-bold bg-slate-700/80 text-slate-300 hover:text-white transition"
+                  >
+                    غداً
+                  </button>
+                </div>
+              ) : (
+                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-700/80 text-xs text-slate-300 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-cyan-300 font-bold">{selectedDate}</span>
+                    <span>(التسجيل متاح لليوم الحالي فقط)</span>
+                  </div>
+                  <span className="text-[11px] text-amber-300/90 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+                    خاصية الأثر الرجعي معطلة من قِبل المدير
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* If record exists for the selected date */}
+            {(() => {
+              const recordForDate =
+                historyRecords.find((r) => r.date === selectedDate) ||
+                (selectedDate === todayStr ? todayRecord : undefined);
+
+              if (!recordForDate) return null;
+
+              return (
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/70 via-sky-950/60 to-slate-900 border border-emerald-500/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
+                      <CheckCircle className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-emerald-300 font-bold uppercase tracking-wider">
+                        الحالة المسجلة لتاريخ ({formatDateArabic(selectedDate)}):
+                      </div>
+                      <div className="text-lg font-black text-white flex items-center gap-2 mt-0.5">
+                        <span>الحالة: {recordForDate.status}</span>
+                        <span className="text-xs font-normal text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-700">
+                          {formatTimeArabic(recordForDate.time)}
+                        </span>
+                      </div>
+                      {recordForDate.notes && (
+                        <div className="text-xs text-slate-300 mt-0.5">
+                          ملاحظة: {recordForDate.notes}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-cyan-300 bg-slate-900/80 px-2.5 py-1 rounded-xl border border-slate-800">
+                    يمكنك تعديل الحالة أدناه
+                  </div>
+                </div>
+              );
+            })()}
 
             <div>
-              <h3 className="text-lg font-black text-white mb-2">
-                {todayRecord ? 'تعديل أو إعادة تأكيد تسجيل اليوم' : 'تسجيل الحضور والدوام لليوم'}
+              <h3 className="text-lg font-black text-white mb-1">
+                اختيار الحالة لتاريخ ({formatDateArabic(selectedDate)})
               </h3>
               <p className="text-xs sm:text-sm text-sky-200/80">
-                اختر الحالة المناسبة لتسجيلها في السجلات الرسمية لمدرسة ذكور مدينة اربد الاعدادية الثانية.
+                اختر الحالة المناسبة (حاضر، طارئة، مرضية، مغادرة) لتثبيتها في السجلات الرسمية.
               </p>
             </div>
 
