@@ -168,20 +168,35 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
     });
   }, [settings]);
 
-  // Map of today's attendance by teacher ID
-  const todayRecordMap = useMemo(() => {
-    const map = new Map<string, AttendanceRecord>();
-    todayAttendance.forEach((r) => map.set(r.teacherId, r));
-    return map;
-  }, [todayAttendance]);
+  const todayRealStr = new Date().toISOString().split('T')[0];
+  const [dashboardDate, setDashboardDate] = useState<string>(todayRealStr);
 
-  // Statistics for today
+  // Filter attendance records specifically for the date chosen on the dashboard
+  const activeAttendance = useMemo(() => {
+    return allAttendance.filter((r) => r.date === dashboardDate);
+  }, [allAttendance, dashboardDate]);
+
+  // Map of selected date's attendance by teacher ID
+  const activeRecordMap = useMemo(() => {
+    const map = new Map<string, AttendanceRecord>();
+    activeAttendance.forEach((r) => map.set(r.teacherId, r));
+    return map;
+  }, [activeAttendance]);
+
+  // Upcoming future leaves submitted in advance
+  const futureLeaves = useMemo(() => {
+    return allAttendance
+      .filter((r) => r.date > todayRealStr)
+      .sort((a, b) => a.date.localeCompare(b.date));
+  }, [allAttendance, todayRealStr]);
+
+  // Statistics for the chosen date
   const totalStaffCount = teachers.length;
-  const presentCount = todayAttendance.filter((r) => r.status === 'حاضر').length;
-  const emergencyCount = todayAttendance.filter((r) => r.status === 'طارئة').length;
-  const sickCount = todayAttendance.filter((r) => r.status === 'مرضية').length;
-  const departureCount = todayAttendance.filter((r) => r.status === 'مغادرة').length;
-  const recordedCount = todayAttendance.length;
+  const presentCount = activeAttendance.filter((r) => r.status === 'حاضر').length;
+  const emergencyCount = activeAttendance.filter((r) => r.status === 'طارئة').length;
+  const sickCount = activeAttendance.filter((r) => r.status === 'مرضية').length;
+  const departureCount = activeAttendance.filter((r) => r.status === 'مغادرة').length;
+  const recordedCount = activeAttendance.length;
   const notRecordedCount = Math.max(0, totalStaffCount - recordedCount);
   const attendanceRate = totalStaffCount > 0 ? Math.round((presentCount / totalStaffCount) * 100) : 0;
 
@@ -214,7 +229,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
       status,
       notes: '',
       departureTime: '11:00',
-      date: new Date().toISOString().split('T')[0],
+      date: dashboardDate,
     });
   };
 
@@ -237,26 +252,26 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
     }
   };
 
-  // Batch mark all remaining unrecorded staff as present
+  // Batch mark all remaining unrecorded staff as present for the chosen dashboard date
   const handleBatchMarkPresent = async () => {
     const unrecordedIds = teachers
-      .filter((t) => !todayRecordMap.has(t.id))
+      .filter((t) => !activeRecordMap.has(t.id))
       .map((t) => t.id);
 
     if (unrecordedIds.length === 0) {
-      alert('جميع المعلمين مسجلون بالفعل لليوم!');
+      alert(`جميع المعلمين مسجلون بالفعل لتاريخ (${dashboardDate})!`);
       return;
     }
 
     if (
       !confirm(
-        `هل تريد تسجيل حضور جماعي كـ (حاضر) لجميع المعلمين المتبقين (${unrecordedIds.length} معلم)؟`
+        `هل تريد تسجيل حضور جماعي كـ (حاضر) لجميع المعلمين المتبقين (${unrecordedIds.length} معلم) لتاريخ (${dashboardDate})؟`
       )
     ) {
       return;
     }
 
-    const res = await onBatchAttendance(unrecordedIds, 'حاضر');
+    const res = await onBatchAttendance(unrecordedIds, 'حاضر', dashboardDate);
     if (res.success) {
       sounds.playSuccessChime();
       confetti({
@@ -553,6 +568,120 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
       {/* ======================================================== */}
       {activeTab === 'today' && (
         <div className="space-y-6">
+          {/* Interactive Date Picker Bar for Director */}
+          <div className="bg-gradient-to-r from-sky-950 via-slate-900 to-blue-950 p-5 rounded-3xl border border-sky-600/50 shadow-xl space-y-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-cyan-400" />
+                <h3 className="font-black text-white text-base">
+                  تحديد تاريخ العرض والتسجيل:
+                </h3>
+              </div>
+
+              {/* Date Context Badge */}
+              {dashboardDate === todayRealStr ? (
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>دوام اليوم الحالي ({formatDateArabic(todayRealStr)})</span>
+                </span>
+              ) : dashboardDate < todayRealStr ? (
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                  🕒 عرض وتسجيل بأثر رجعي ({formatDateArabic(dashboardDate)})
+                </span>
+              ) : (
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                  📅 عرض وجدولة إجازات تاريخ مستقبلي ({formatDateArabic(dashboardDate)})
+                </span>
+              )}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <input
+                type="date"
+                value={dashboardDate}
+                onChange={(e) => setDashboardDate(e.target.value)}
+                className="bg-slate-800 border border-sky-600/50 rounded-2xl px-4 py-2.5 text-white font-mono text-xs sm:text-sm outline-none focus:border-cyan-400"
+              />
+
+              <button
+                type="button"
+                onClick={() => setDashboardDate(todayRealStr)}
+                className={`px-3.5 py-2.5 rounded-2xl text-xs font-bold transition ${
+                  dashboardDate === todayRealStr
+                    ? 'bg-cyan-500 text-white shadow'
+                    : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700'
+                }`}
+              >
+                اليوم
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const d = new Date();
+                  d.setDate(d.getDate() - 1);
+                  setDashboardDate(d.toISOString().split('T')[0]);
+                }}
+                className="px-3.5 py-2.5 rounded-2xl text-xs font-bold bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition"
+              >
+                أمس
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const d = new Date();
+                  d.setDate(d.getDate() + 1);
+                  setDashboardDate(d.toISOString().split('T')[0]);
+                }}
+                className="px-3.5 py-2.5 rounded-2xl text-xs font-bold bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition"
+              >
+                غداً
+              </button>
+            </div>
+          </div>
+
+          {/* Upcoming Future Leaves Alert Card for the Director */}
+          {futureLeaves.length > 0 && (
+            <div className="p-4 rounded-3xl bg-purple-950/40 border border-purple-500/40 space-y-2.5">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
+                  <span className="font-bold text-purple-200">
+                    توجد ({futureLeaves.length}) طلبات إجازة ومغادرة مسجلة لتواريخ قادمة (تظهر فقط في تواريخها):
+                  </span>
+                </div>
+                <span className="text-[11px] text-purple-300/80">انقر على أي بطاقة لعرض جدول ذلك اليوم</span>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {futureLeaves.map((fl) => (
+                  <button
+                    key={fl.id}
+                    type="button"
+                    onClick={() => setDashboardDate(fl.date)}
+                    className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-purple-500/40 text-right transition flex items-center gap-2.5 shadow text-xs"
+                    title={`انقر للانتقال لعرض تاريخ ${fl.date}`}
+                  >
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                        fl.status === 'طارئة'
+                          ? 'bg-amber-500/20 text-amber-300'
+                          : fl.status === 'مرضية'
+                          ? 'bg-rose-500/20 text-rose-300'
+                          : 'bg-purple-500/20 text-purple-300'
+                      }`}
+                    >
+                      {fl.status}
+                    </span>
+                    <span className="font-bold text-white">{fl.teacherName}</span>
+                    <span className="text-slate-400 font-mono text-[11px]">({fl.date})</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* KPI Dashboard Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             <div className="p-4 rounded-3xl bg-slate-900/80 border border-sky-700/40 text-center">
@@ -562,7 +691,9 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
             </div>
 
             <div className="p-4 rounded-3xl bg-emerald-950/40 border border-emerald-500/40 text-center">
-              <div className="text-xs text-emerald-300 font-bold mb-1">حاضر اليوم</div>
+              <div className="text-xs text-emerald-300 font-bold mb-1">
+                {dashboardDate === todayRealStr ? 'حاضر اليوم' : 'حاضر في هذا التاريخ'}
+              </div>
               <div className="text-2xl sm:text-3xl font-black text-emerald-300">{presentCount}</div>
               <div className="text-[11px] text-emerald-400 mt-1">{attendanceRate}% نسبة الدوام</div>
             </div>
@@ -580,7 +711,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
             </div>
 
             <div className="p-4 rounded-3xl bg-purple-950/40 border border-purple-500/40 text-center">
-              <div className="text-xs text-purple-300 font-bold mb-1">مغادرات اليوم</div>
+              <div className="text-xs text-purple-300 font-bold mb-1">مغادرات</div>
               <div className="text-2xl sm:text-3xl font-black text-purple-300">{departureCount}</div>
               <div className="text-[11px] text-purple-400/80 mt-1">إذن مغادرة رسمي</div>
             </div>
@@ -636,17 +767,17 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
 
           {/* Teachers Roster & Live Status Table */}
           <div className="bg-slate-900/80 border border-sky-700/40 rounded-3xl overflow-hidden shadow-xl">
-            <div className="p-5 border-b border-sky-800/40 flex items-center justify-between">
+            <div className="p-5 border-b border-sky-800/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
               <div>
                 <h3 className="font-black text-base text-white">
-                  جدول متابعة وتسجيل حضور المعلمين اليوم
+                  جدول متابعة وتسجيل دوام المعلمين لتاريخ ({formatDateArabic(dashboardDate)})
                 </h3>
                 <p className="text-xs text-sky-200/70 mt-0.5">
-                  يمكن للمدير النقر على أي حالة لتثبيتها فوراً أو تعديلها مع إمكانية إضافة ملاحظة
+                  تظهر السجلات الخاصة بالتاريخ المحدد حصراً مع إمكانية التسجيل أو التعديل الفوري
                 </p>
               </div>
-              <span className="text-xs text-slate-400 font-mono">
-                {formatDateArabic(new Date().toISOString().split('T')[0])}
+              <span className="text-xs font-mono font-bold text-cyan-300 bg-sky-950/80 px-3 py-1 rounded-xl border border-sky-700/60">
+                {formatDateArabic(dashboardDate)}
               </span>
             </div>
 
@@ -659,14 +790,14 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
                     <th className="p-3.5">اسم المعلم</th>
                     <th className="p-3.5">المسمى والتخصص</th>
                     <th className="p-3.5">الهاتف</th>
-                    <th className="p-3.5">حالة اليوم</th>
+                    <th className="p-3.5">الحالة لتاريخ ({dashboardDate})</th>
                     <th className="p-3.5">وقت التسجيل</th>
                     <th className="p-3.5">إجراءات المدير السريعة</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800 text-slate-200">
                   {filteredTeachers.map((teacher, index) => {
-                    const rec = todayRecordMap.get(teacher.id);
+                    const rec = activeRecordMap.get(teacher.id);
                     return (
                       <tr
                         key={teacher.id}
@@ -691,26 +822,34 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
                         <td className="p-3.5 text-slate-400 font-mono text-[11px]">{teacher.phone}</td>
                         <td className="p-3.5">
                           {rec ? (
-                            <span
-                              className={`px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 ${
-                                rec.status === 'حاضر'
-                                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                                  : rec.status === 'طارئة'
-                                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                                  : rec.status === 'مرضية'
-                                  ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
-                                  : 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
-                              }`}
-                            >
-                              <span>{rec.status}</span>
-                              {rec.recordedBy === 'principal' && (
-                                <span className="text-[10px] text-slate-400 font-normal">
-                                  (المدير)
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span
+                                className={`px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 ${
+                                  rec.status === 'حاضر'
+                                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                                    : rec.status === 'طارئة'
+                                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                                    : rec.status === 'مرضية'
+                                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                                    : 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
+                                }`}
+                              >
+                                <span>{rec.status}</span>
+                                {rec.recordedBy === 'principal' && (
+                                  <span className="text-[10px] text-slate-400 font-normal">
+                                    (المدير)
+                                  </span>
+                                )}
+                              </span>
+
+                              {rec.isModified && (
+                                <span className="text-[10px] text-amber-300 font-bold bg-amber-500/20 px-1.5 py-0.5 rounded border border-amber-400/40">
+                                  مُعدل {rec.lastModifiedTime}
                                 </span>
                               )}
-                            </span>
+                            </div>
                           ) : (
-                            <span className="text-slate-500 italic text-xs">لم يسجل بعد</span>
+                            <span className="text-slate-500 italic text-xs">لم يسجل في هذا التاريخ</span>
                           )}
                         </td>
                         <td className="p-3.5 font-mono text-slate-400 text-xs">
@@ -1372,7 +1511,7 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
                   </thead>
                   <tbody className="divide-y divide-slate-800 text-slate-200">
                     {teachers.map((t, idx) => {
-                      const todayRec = todayRecordMap.get(t.id);
+                      const todayRec = activeRecordMap.get(t.id);
                       return (
                         <tr key={t.id} className="hover:bg-slate-800/30">
                           <td className="p-2.5 text-slate-400 font-mono">{idx + 1}</td>
