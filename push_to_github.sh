@@ -3,12 +3,8 @@ echo "=========================================================="
 echo "رفع نظام حضور وغياب مدرسة ذكور مدينة اربد الاعدادية الثانية الى GitHub"
 echo "=========================================================="
 echo ""
-read -p "يرجى ادخال رابط مستودع GitHub الخاص بك (مثال: https://github.com/username/repo.git): " REPO_URL
-
-if [ -z "$REPO_URL" ]; then
-    echo "خطأ: لم يتم ادخال رابط المستودع."
-    exit 1
-fi
+REPO_URL="https://github.com/luaialkhatib-art/finalattendance.git"
+echo "المستودع المستهدف: $REPO_URL"
 
 git remote remove origin 2>/dev/null
 git remote add origin "$REPO_URL"

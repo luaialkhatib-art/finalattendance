@@ -4,13 +4,8 @@ echo ==========================================================
 echo رفع نظام حضور وغياب مدرسة ذكور مدينة اربد الاعدادية الثانية الى GitHub
 echo ==========================================================
 echo.
-set /p REPO_URL="يرجى إدخال رابط مستودع GitHub الخاص بك (مثال: https://github.com/username/repo.git): "
-
-if "%REPO_URL%"=="" (
-    echo خطأ: لم يتم إدخال رابط المستودع.
-    pause
-    exit /b
-)
+set REPO_URL=https://github.com/luaialkhatib-art/finalattendance.git
+echo المستودع المستهدف: %REPO_URL%
 
 git remote remove origin >nul 2>&1
 git remote add origin %REPO_URL%
