@@ -323,7 +323,7 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
                     الحد الأقصى المسموح به: {settings.radiusMeters} متر.
                   </div>
                   <div className="mt-1 text-[11px] text-amber-300/80">
-                    يجب أن تكون متواجداً داخل حرم مدرسة الخطيب فوعرا لتسجيل الحضور.
+                    يجب أن تكون متواجداً داخل حرم المدرسة (فوعرا) لتسجيل الحضور.
                   </div>
                 </div>
               </div>
@@ -694,7 +694,7 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
             <div className="hidden print:block text-center border-b pb-4 mb-4 text-black">
               <h2 className="font-bold text-lg">وكالة الأمم المتحدة لإغاثة وتشغيل اللاجئين الفلسطينيين (UNRWA)</h2>
               <h3 className="text-md">دائرة التربية والتعليم - الأردن | رمز المدرسة: 10000596</h3>
-              <h4 className="font-bold">مدرسة ذكور مدينة اربد الإعدادية الثانية (الخطيب - فوعرا)</h4>
+              <h4 className="font-bold">مدرسة ذكور مدينة اربد الإعدادية الثانية</h4>
               <p className="mt-2 text-sm">
                 كشف دوام المعلم: <strong>{teacher.name}</strong> - الرقم الوظيفي: <strong>{teacher.id}</strong> - التخصص: <strong>{teacher.specialty}</strong>
               </p>

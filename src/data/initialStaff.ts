@@ -2,12 +2,12 @@ import { Teacher, GeofenceSettings } from '../types.ts';
 
 export const INITIAL_GEOFENCE_SETTINGS: GeofenceSettings = {
   enabled: true,
-  latitude: 32.5645, // إحداثيات مدرسة ذكور مدينة اربد الإعدادية الثانية (الخطيب - فوعرا)
+  latitude: 32.5645, // إحداثيات مدرسة ذكور مدينة اربد الإعدادية الثانية - فوعرا
   longitude: 35.8450,
   radiusMeters: 350, // نطاق مسموح 350 متر
   schoolName: 'مدرسة ذكور مدينة اربد الاعدادية الثانية',
   principalName: 'لؤي تيسير نمر الخطيب',
-  locationLabel: 'اربد - شارع فوعرا (مدرسة الخطيب)',
+  locationLabel: 'اربد - شارع فوعرا',
   allowCustomDateForTeachers: true,
 };
 

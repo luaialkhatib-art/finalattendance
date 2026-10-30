@@ -52,7 +52,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
             تسجيل الدخول للنظام
           </h2>
           <p className="text-sm text-sky-200/80 mt-1">
-            مدرسة ذكور مدينة اربد الاعدادية الثانية (مدرسة الخطيب - فوعرا)
+            مدرسة ذكور مدينة اربد الاعدادية الثانية
           </p>
         </div>
 
