@@ -344,12 +344,20 @@ app.post('/api/attendance', (req: Request, res: Response) => {
     (r) => r.teacherId === String(teacherId) && r.date === dateStr
   );
 
+  const existingRecord = existingIdx >= 0 ? db.attendance[existingIdx] : undefined;
+  const isUpdate = existingRecord !== undefined;
+  const previousStatus = existingRecord?.status;
+
+  const exactNow = new Date();
+  const exactChangeTime = exactNow.toTimeString().split(' ')[0]; // Exact HH:mm:ss
+  const currentActionDate = exactNow.toISOString().split('T')[0];
+
   const newRecord: AttendanceRecord = {
-    id: existingIdx >= 0 ? db.attendance[existingIdx].id : `rec-${Date.now()}-${teacherId}`,
+    id: isUpdate ? existingRecord.id : `rec-${Date.now()}-${teacherId}`,
     teacherId: teacher.id,
     teacherName: teacher.name,
     date: dateStr,
-    time: timeStr,
+    time: isUpdate ? existingRecord.time : exactChangeTime,
     status,
     notes: notes || '',
     departureTime,
@@ -362,16 +370,39 @@ app.post('/api/attendance', (req: Request, res: Response) => {
             distanceMeters,
             withinGeofence,
           }
-        : undefined,
+        : existingRecord?.location,
     recordedBy: recordedBy || 'teacher',
     recordedByName: recordedBy === 'principal' ? 'مدير المدرسة (لؤي الخطيب)' : teacher.name,
-    timestamp: Date.now(),
+    timestamp: isUpdate ? existingRecord.timestamp : Date.now(),
+    isModified: isUpdate,
+    previousStatus: isUpdate ? previousStatus : undefined,
+    lastModifiedAt: Date.now(),
+    lastModifiedTime: exactChangeTime,
+    lastModifiedDate: currentActionDate,
   };
 
-  if (existingIdx >= 0) {
+  if (isUpdate) {
     db.attendance[existingIdx] = newRecord;
   } else {
     db.attendance.unshift(newRecord);
+  }
+
+  // Determine exact notification message and classification
+  let notifType: 'create' | 'update' | 'retroactive' | 'future' = 'create';
+  let notifMessage = '';
+
+  if (isUpdate) {
+    notifType = 'update';
+    notifMessage = `⚠️ تعديل حضور: قام المعلم ${teacher.name} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${status}] في تمام الساعة ${exactChangeTime} بالتحديد!`;
+  } else if (dateStr < todayStr) {
+    notifType = 'retroactive';
+    notifMessage = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacher.name} بتسجيل حالته (${status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+  } else if (dateStr > todayStr) {
+    notifType = 'future';
+    notifMessage = `📅 طلب إجازة مسبقة: قام المعلم ${teacher.name} بتقديم طلب (${status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+  } else {
+    notifType = 'create';
+    notifMessage = `✓ تسجيل دوام: قام المعلم ${teacher.name} بتسجيل حالته (${status}) لليوم في تمام الساعة ${exactChangeTime}!`;
   }
 
   // Create real-time notification for the principal
@@ -380,11 +411,15 @@ app.post('/api/attendance', (req: Request, res: Response) => {
     teacherId: teacher.id,
     teacherName: teacher.name,
     status,
-    time: timeStr,
-    date: dateStr,
+    previousStatus,
+    time: exactChangeTime,
+    date: currentActionDate,
+    targetDate: dateStr,
     timestamp: Date.now(),
     read: false,
-    message: `قام المعلم ${teacher.name} بتسجيل حالته: (${status}) في تمام الساعة ${timeStr}`,
+    type: notifType,
+    exactChangeTime,
+    message: notifMessage,
   };
 
   db.notifications.unshift(notif);
@@ -404,7 +439,7 @@ app.post('/api/attendance', (req: Request, res: Response) => {
     success: true,
     record: newRecord,
     notification: notif,
-    message: `تم تسجيل (${status}) بنجاح للمعلم ${teacher.name}`,
+    message: notifMessage,
   });
 });
 

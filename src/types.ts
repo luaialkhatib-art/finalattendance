@@ -35,6 +35,11 @@ export interface AttendanceRecord {
   recordedBy: 'teacher' | 'principal';
   recordedByName?: string;
   timestamp: number;
+  isModified?: boolean; // هل تم تعديل السجل
+  previousStatus?: AttendanceStatus; // الحالة السابقة قبل التعديل
+  lastModifiedAt?: number; // وقت التعديل الدقيق بالمللي ثانية
+  lastModifiedTime?: string; // وقت التعديل الدقيق بالثواني HH:mm:ss
+  lastModifiedDate?: string; // تاريخ حدوث التعديل
 }
 
 export interface GeofenceSettings {
@@ -53,11 +58,15 @@ export interface NotificationItem {
   teacherId: string;
   teacherName: string;
   status: AttendanceStatus;
+  previousStatus?: AttendanceStatus;
   time: string;
   date: string;
   timestamp: number;
   read: boolean;
   message: string;
+  type?: 'create' | 'update' | 'retroactive' | 'future';
+  targetDate?: string; // تاريخ الدوام المستهدف
+  exactChangeTime?: string; // وقت إجراء التغيير بالثواني الدقيقة
 }
 
 export interface InitialDataResponse {

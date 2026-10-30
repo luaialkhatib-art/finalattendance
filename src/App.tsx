@@ -279,20 +279,33 @@ export default function App() {
   const handleRecordAttendance = async (payload: any) => {
     const now = new Date();
     const dateStr = payload.customDate || now.toISOString().split('T')[0];
-    const timeStr = now.toTimeString().split(' ')[0];
+    const exactChangeTime = now.toTimeString().split(' ')[0]; // Exact HH:mm:ss
+
+    // Check if existing record exists locally
+    const existing = allAttendance.find(
+      (r) => r.teacherId === payload.teacherId && r.date === dateStr
+    );
+    const isUpdate = existing !== undefined;
+    const previousStatus = existing?.status;
+    const teacherName = teachers.find((t) => t.id === payload.teacherId)?.name || 'معلم';
 
     const localRecord: AttendanceRecord = {
-      id: `rec-${Date.now()}-${payload.teacherId}`,
+      id: isUpdate ? existing.id : `rec-${Date.now()}-${payload.teacherId}`,
       teacherId: payload.teacherId,
-      teacherName: teachers.find((t) => t.id === payload.teacherId)?.name || 'معلم',
+      teacherName,
       date: dateStr,
-      time: timeStr,
+      time: isUpdate ? existing.time : exactChangeTime,
       status: payload.status,
       notes: payload.notes || '',
       departureTime: payload.departureTime,
       departureDuration: payload.departureDuration,
       recordedBy: payload.recordedBy || 'teacher',
-      timestamp: Date.now(),
+      timestamp: isUpdate ? existing.timestamp : Date.now(),
+      isModified: isUpdate,
+      previousStatus: isUpdate ? previousStatus : undefined,
+      lastModifiedAt: Date.now(),
+      lastModifiedTime: exactChangeTime,
+      lastModifiedDate: now.toISOString().split('T')[0],
     };
 
     try {
@@ -317,16 +330,31 @@ export default function App() {
         ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
       ]);
 
+      let notifMsg = '';
+      if (isUpdate) {
+        notifMsg = `⚠️ تعديل حضور: قام المعلم ${teacherName} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${payload.status}] في تمام الساعة ${exactChangeTime} بالتحديد!`;
+      } else if (dateStr < now.toISOString().split('T')[0]) {
+        notifMsg = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+      } else if (dateStr > now.toISOString().split('T')[0]) {
+        notifMsg = `📅 طلب إجازة مسبقة: قام المعلم ${teacherName} بتقديم (${payload.status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+      } else {
+        notifMsg = `✓ تسجيل دوام: قام المعلم ${teacherName} بتسجيل حالته (${payload.status}) لليوم في تمام الساعة ${exactChangeTime}!`;
+      }
+
       const notif: NotificationItem = {
         id: `notif-${Date.now()}`,
         teacherId: localRecord.teacherId,
         teacherName: localRecord.teacherName,
         status: localRecord.status,
-        time: timeStr,
-        date: dateStr,
+        previousStatus,
+        time: exactChangeTime,
+        date: now.toISOString().split('T')[0],
+        targetDate: dateStr,
         timestamp: Date.now(),
         read: false,
-        message: `سجل المعلم ${localRecord.teacherName} حالته: (${localRecord.status}) في تمام الساعة ${timeStr}`,
+        type: isUpdate ? 'update' : 'create',
+        exactChangeTime,
+        message: notifMsg,
       };
       setNotifications((prev) => [notif, ...prev]);
 

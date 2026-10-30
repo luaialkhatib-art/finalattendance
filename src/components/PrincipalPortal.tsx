@@ -1743,12 +1743,18 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
               notifications.map((n) => (
                 <div
                   key={n.id}
-                  className="p-3.5 rounded-2xl bg-slate-800/70 border border-sky-800/40 flex items-center justify-between gap-3 text-xs"
+                  className={`p-3.5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs transition ${
+                    n.type === 'update'
+                      ? 'bg-amber-950/70 border-amber-500/60 shadow-lg shadow-amber-500/10'
+                      : 'bg-slate-800/70 border-sky-800/40'
+                  }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-start gap-3">
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold ${
-                        n.status === 'حاضر'
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold shrink-0 mt-0.5 ${
+                        n.type === 'update'
+                          ? 'bg-amber-500/30 text-amber-300'
+                          : n.status === 'حاضر'
                           ? 'bg-emerald-500/20 text-emerald-300'
                           : n.status === 'طارئة'
                           ? 'bg-amber-500/20 text-amber-300'
@@ -1760,13 +1766,32 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
                       <Bell className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-bold text-white text-sm">{n.teacherName}</div>
-                      <div className="text-slate-300">{n.message}</div>
+                      <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                        <span className="font-bold text-white text-sm">{n.teacherName}</span>
+                        {n.type === 'update' ? (
+                          <span className="bg-amber-500/30 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-400/50">
+                            ✏️ تم تعديل الحضور
+                          </span>
+                        ) : n.type === 'retroactive' ? (
+                          <span className="bg-sky-500/30 text-sky-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-sky-400/50">
+                            🕒 أثر رجعي
+                          </span>
+                        ) : n.type === 'future' ? (
+                          <span className="bg-purple-500/30 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-purple-400/50">
+                            📅 طلب مستقبلي
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="text-slate-200 leading-relaxed font-medium">{n.message}</div>
                     </div>
                   </div>
-                  <div className="text-left font-mono text-slate-400 text-[11px] shrink-0">
-                    <div>{n.date}</div>
-                    <div>{formatTimeArabic(n.time)}</div>
+
+                  <div className="text-right sm:text-left font-mono shrink-0 bg-black/40 px-3 py-1.5 rounded-xl border border-slate-700/60 self-stretch sm:self-auto flex sm:flex-col justify-between items-center sm:items-end">
+                    <div className="text-[10px] text-slate-400">تاريخ الإجراء: {n.date}</div>
+                    <div className="text-amber-300 font-bold text-xs flex items-center gap-1 mt-0.5">
+                      <Clock className="w-3 h-3 text-cyan-400" />
+                      <span>{n.exactChangeTime || n.time} بالثانية</span>
+                    </div>
                   </div>
                 </div>
               ))

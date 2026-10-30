@@ -198,19 +198,28 @@ export const Header: React.FC<HeaderProps> = ({
                       <div
                         key={notif.id}
                         className={`p-2.5 rounded-xl text-xs transition ${
-                          notif.read
+                          notif.type === 'update'
+                            ? 'bg-amber-950/80 border border-amber-500/50 text-white'
+                            : notif.read
                             ? 'bg-slate-800/50 text-slate-300'
                             : 'bg-sky-950/80 border border-sky-500/30 text-white font-medium'
                         }`}
                       >
                         <div className="flex items-center justify-between gap-2 mb-1">
-                          <span className="font-bold text-cyan-300">{notif.teacherName}</span>
-                          <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {formatTimeArabic(notif.time)}
+                          <div className="flex items-center gap-1.5">
+                            {notif.type === 'update' && (
+                              <span className="bg-amber-500/30 text-amber-300 text-[10px] font-bold px-1.5 py-0.2 rounded border border-amber-400/40">
+                                ✏️ تعديل
+                              </span>
+                            )}
+                            <span className="font-bold text-cyan-300">{notif.teacherName}</span>
+                          </div>
+                          <span className="text-[10px] font-mono text-amber-200 bg-black/40 px-1.5 py-0.5 rounded flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-cyan-400" />
+                            <span>{notif.exactChangeTime || notif.time}</span>
                           </span>
                         </div>
-                        <p className="text-slate-200 leading-relaxed">{notif.message}</p>
+                        <p className="text-slate-200 leading-relaxed text-[11px]">{notif.message}</p>
                       </div>
                     ))
                   )}
