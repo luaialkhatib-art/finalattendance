@@ -1,0 +1,6 @@
+{
+  "name": "نظام تسجيل الحضور الالكتروني - مدرسة ذكور مدينة اربد الاعدادية الثانية",
+  "description": "نظام تسجيل الحضور والغياب للمعلمين - مدرسة ذكور مدينة اربد الاعدادية الثانية - وكالة الغوث الدولية - بإدارة الأستاذ لؤي الخطيب",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

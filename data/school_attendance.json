@@ -1,0 +1,4721 @@
+{
+  "teachers": [
+    {
+      "id": "10510884",
+      "name": "لؤي تيسير نمر الخطيب",
+      "jobTitle": "مدير مدرسة",
+      "specialty": "اللغة العربية",
+      "phone": "+962782901667",
+      "nationalId": "9731009685",
+      "gender": "ذكر",
+      "role": "principal",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10511588",
+      "name": "فادي عبدالله سلمان ثابت",
+      "jobTitle": "نائب مدير مدرسة",
+      "specialty": "تربية",
+      "phone": "+962788035326",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30043214",
+      "name": "Mahmoud Hamed Moh'd Al-shannik",
+      "jobTitle": "مدرس الأشغال اليدوية",
+      "specialty": "الأشغال اليدوية",
+      "phone": "+962788865342",
+      "nationalId": "99981003138",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10512150",
+      "name": "محمد ابراهيم حجازي",
+      "jobTitle": "مدرس الأشغال اليدوية",
+      "specialty": "التربية المهنية",
+      "phone": "+962788865342",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30034197",
+      "name": "Osama Husain Abdallah Shoubaki",
+      "jobTitle": "مدرس الحاسوب",
+      "specialty": "الحاسوب",
+      "phone": "+962788632388",
+      "nationalId": "9871046850",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10541315",
+      "name": "معاذ ابراهيم جوابرة",
+      "jobTitle": "مدرس الحاسوب",
+      "specialty": "حاسوب/تكنولوجيا المعلومات",
+      "phone": "+962788632388",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10513454",
+      "name": "أحمد خليل عطية عبيد",
+      "jobTitle": "مدرس اللغة الإنجليزية",
+      "specialty": "اللغة الانجليزية",
+      "phone": "+962781000897",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10513796",
+      "name": "احمد جمعه رجا مشركي",
+      "jobTitle": "مدرس اللغة الإنجليزية",
+      "specialty": "اللغة الانجليزية",
+      "phone": "+962788515383",
+      "nationalId": "9871038287",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30040743",
+      "name": "ثائر ابراهيم عيسى الكرنز",
+      "jobTitle": "مدرس اللغة الإنجليزية",
+      "specialty": "اللغة الانجليزية",
+      "phone": "+962780962383",
+      "nationalId": "9981033014",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10774141",
+      "name": "عبدالرحمن يوسف محمد الهدبة",
+      "jobTitle": "مدرس اللغة الإنجليزية",
+      "specialty": "اللغة الانجليزية",
+      "phone": "+962780962383",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30043221",
+      "name": "Ahmad Mohammad Mustafa Rababa",
+      "jobTitle": "مدرس تربية إسلامية",
+      "specialty": "التربية الإسلامية",
+      "phone": "+962791423484",
+      "nationalId": "2000190093",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10540399",
+      "name": "اسماعيل خليل محمد ابوناموس",
+      "jobTitle": "مدرس تربية إسلامية",
+      "specialty": "التربية الإسلامية",
+      "phone": "+962791423484",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10778122",
+      "name": "لؤي أحمد عبد الله حسين",
+      "jobTitle": "مدرس تربية إسلامية",
+      "specialty": "التربية الإسلامية",
+      "phone": "0785240061",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10510080",
+      "name": "جهاد علي حسن أبو راشد",
+      "jobTitle": "مدرس رياضة",
+      "specialty": "تربية",
+      "phone": "+962788765094",
+      "nationalId": "9671009194",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10775910",
+      "name": "ابراهيم عويض سليمان جرادات",
+      "jobTitle": "مدرس رياضيات",
+      "specialty": "رياضيات",
+      "phone": "0797838448",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10778090",
+      "name": "احمد محمد محمود صالح",
+      "jobTitle": "مدرس رياضيات",
+      "specialty": "رياضيات",
+      "phone": "+962796822391",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10513032",
+      "name": "محمد جابر محمود ابو شكيان",
+      "jobTitle": "مدرس رياضيات",
+      "specialty": "الرياضيات",
+      "phone": "+962787940835",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10774178",
+      "name": "محمد صالح سالم مزاري",
+      "jobTitle": "مدرس رياضيات",
+      "specialty": "رياضيات",
+      "phone": "0772639801",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10511687",
+      "name": "عبدالله محمد سعيد جابر",
+      "jobTitle": "مدرس رياضيات محوسبة",
+      "specialty": "حاسوب/تكنولوجيا المعلومات",
+      "phone": "+962786831150",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10524688",
+      "name": "حازم عادل احمد الغول",
+      "jobTitle": "مدرس علوم",
+      "specialty": "الأحياء",
+      "phone": "+962776369369",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10513499",
+      "name": "طارق محمود حمد حسين",
+      "jobTitle": "مدرس علوم",
+      "specialty": "الفيزياء، تربية",
+      "phone": "+962785851200",
+      "nationalId": "9881013005",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10512759",
+      "name": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "jobTitle": "مدرس علوم",
+      "specialty": "الفيزياء",
+      "phone": "+962780102395",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10540832",
+      "name": "علي أحمد ناجي كممجي",
+      "jobTitle": "مدرس علوم",
+      "specialty": "العلوم",
+      "phone": "+962788822331",
+      "nationalId": "9771010123",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10513388",
+      "name": "لؤي أحمد علي السيد",
+      "jobTitle": "مدرس علوم",
+      "specialty": "الفيزياء",
+      "phone": "+962785199896",
+      "nationalId": "9791014563",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10520135",
+      "name": "أحمد خضر المحمد",
+      "jobTitle": "مدرس مواد اجتماعية",
+      "specialty": "المواد الاجتماعية",
+      "phone": "+962788221804",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10511435",
+      "name": "عاصم محمد عبد مصطفى",
+      "jobTitle": "مدرس مواد اجتماعية",
+      "specialty": "الجغرافية",
+      "phone": "+962788110734",
+      "nationalId": "9821007235",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10540082",
+      "name": "شادي سعيد مشرقي",
+      "jobTitle": "معلم لغة عربية",
+      "specialty": "اللغة العربية",
+      "phone": "+962795144506",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30034724",
+      "name": "صهيب علي سالم عبيدات",
+      "jobTitle": "معلم لغة عربية",
+      "specialty": "اللغة العربية",
+      "phone": "9961006864",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30041068",
+      "name": "علاء جلال انيس الشواهنه",
+      "jobTitle": "معلم لغة عربية",
+      "specialty": "اللغة العربية",
+      "phone": "2000167762",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "10513658",
+      "name": "غسان محمد ذياب المشرقي",
+      "jobTitle": "معلم لغة عربية",
+      "specialty": "اللغة العربية",
+      "phone": "+962785777251",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    },
+    {
+      "id": "30040821",
+      "name": "محمد عماد يوسف كميل",
+      "jobTitle": "معلم لغة عربية",
+      "specialty": "اللغة العربية",
+      "phone": "9941031604",
+      "nationalId": "",
+      "gender": "ذكر",
+      "role": "teacher",
+      "password": "12345",
+      "leaveBalance": {
+        "emergency": 7,
+        "sick": 14
+      }
+    }
+  ],
+  "attendance": [
+    {
+      "id": "rec-2026-10-29-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-29",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56471327052912,
+        "longitude": 35.8449327726254,
+        "distanceMeters": 48,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-29",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56459038565535,
+        "longitude": 35.84517884899298,
+        "distanceMeters": 20,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-29",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56441962561365,
+        "longitude": 35.845099291795506,
+        "distanceMeters": 80,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-29",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564307994510365,
+        "longitude": 35.84494051764859,
+        "distanceMeters": 37,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-29",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564651510215256,
+        "longitude": 35.8451757084215,
+        "distanceMeters": 95,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-29",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464164667651,
+        "longitude": 35.84513183504197,
+        "distanceMeters": 55,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-29",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56450573797189,
+        "longitude": 35.8449657796986,
+        "distanceMeters": 38,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-29",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56453147827225,
+        "longitude": 35.845065009179265,
+        "distanceMeters": 26,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-29",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56436262205516,
+        "longitude": 35.84524806206438,
+        "distanceMeters": 99,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-29",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56444732269029,
+        "longitude": 35.844880300512585,
+        "distanceMeters": 59,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-29",
+      "time": "07:30:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439164438592,
+        "longitude": 35.845220286356124,
+        "distanceMeters": 78,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-29",
+      "time": "07:31:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56450368772722,
+        "longitude": 35.84481836176479,
+        "distanceMeters": 61,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-29",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56455852694743,
+        "longitude": 35.845096648257076,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-29",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56455438085745,
+        "longitude": 35.844957156225846,
+        "distanceMeters": 27,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-29",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56458199428508,
+        "longitude": 35.84515996470655,
+        "distanceMeters": 20,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-29",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564444505315585,
+        "longitude": 35.84505193441969,
+        "distanceMeters": 71,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-29",
+      "time": "07:36:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56459191385305,
+        "longitude": 35.845131937252816,
+        "distanceMeters": 47,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-29",
+      "time": "07:37:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.564597444424884,
+        "longitude": 35.84508289469871,
+        "distanceMeters": 38,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-29",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56435710761849,
+        "longitude": 35.84489652146583,
+        "distanceMeters": 30,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-29",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56427338316356,
+        "longitude": 35.844860003535146,
+        "distanceMeters": 49,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-29",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56471121242867,
+        "longitude": 35.8449794299464,
+        "distanceMeters": 96,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-29",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56443385260384,
+        "longitude": 35.844877755655986,
+        "distanceMeters": 26,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-29",
+      "time": "07:42:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56459490346269,
+        "longitude": 35.84477064792428,
+        "distanceMeters": 71,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-29",
+      "time": "07:43:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56448025702589,
+        "longitude": 35.84508677157693,
+        "distanceMeters": 59,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-29",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56452184065269,
+        "longitude": 35.84482742880722,
+        "distanceMeters": 95,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-29",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5646424445583,
+        "longitude": 35.84505173913453,
+        "distanceMeters": 75,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-29",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564620906566944,
+        "longitude": 35.84503615484343,
+        "distanceMeters": 97,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-29",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564597170283164,
+        "longitude": 35.84493086183683,
+        "distanceMeters": 29,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-29",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439580095013,
+        "longitude": 35.84518978868174,
+        "distanceMeters": 83,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-29",
+      "time": "07:24:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.564422757712535,
+        "longitude": 35.84514741005729,
+        "distanceMeters": 90,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-29-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-29",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5644423718628,
+        "longitude": 35.84496484696449,
+        "distanceMeters": 32,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793285415432
+    },
+    {
+      "id": "rec-2026-10-28-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-28",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564463150807846,
+        "longitude": 35.844876631143066,
+        "distanceMeters": 49,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-28",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56450743667004,
+        "longitude": 35.845044074969564,
+        "distanceMeters": 35,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-28",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564335062178976,
+        "longitude": 35.84504764041355,
+        "distanceMeters": 20,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-28",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464490886463,
+        "longitude": 35.84506536772368,
+        "distanceMeters": 88,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-28",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56442499477485,
+        "longitude": 35.8452226287393,
+        "distanceMeters": 51,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-28",
+      "time": "07:25:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.5644114981743,
+        "longitude": 35.844778583243404,
+        "distanceMeters": 30,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-28",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56438560345302,
+        "longitude": 35.84478968801748,
+        "distanceMeters": 72,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-28",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56465377750931,
+        "longitude": 35.844897979684816,
+        "distanceMeters": 75,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-28",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439852635329,
+        "longitude": 35.84506543441855,
+        "distanceMeters": 30,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-28",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56472326209809,
+        "longitude": 35.84496753273889,
+        "distanceMeters": 29,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-28",
+      "time": "07:30:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439208252606,
+        "longitude": 35.84510626166401,
+        "distanceMeters": 60,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-28",
+      "time": "07:31:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564356484473095,
+        "longitude": 35.84493758093358,
+        "distanceMeters": 64,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-28",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564601406537896,
+        "longitude": 35.84505810246639,
+        "distanceMeters": 81,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-28",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564335959997685,
+        "longitude": 35.84484890400567,
+        "distanceMeters": 94,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-28",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56465092403094,
+        "longitude": 35.845117700375596,
+        "distanceMeters": 75,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-28",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5644843969022,
+        "longitude": 35.84497163359636,
+        "distanceMeters": 68,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-28",
+      "time": "07:36:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564321070540586,
+        "longitude": 35.8447822120596,
+        "distanceMeters": 66,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-28",
+      "time": "07:37:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56470475121897,
+        "longitude": 35.845059757047245,
+        "distanceMeters": 27,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-28",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564529766859174,
+        "longitude": 35.845218053189946,
+        "distanceMeters": 82,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-28",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564260013588296,
+        "longitude": 35.84518526894303,
+        "distanceMeters": 94,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-28",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56461713519932,
+        "longitude": 35.84481187124811,
+        "distanceMeters": 94,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-28",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56472993779279,
+        "longitude": 35.8449468944369,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-28",
+      "time": "07:42:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56471488223348,
+        "longitude": 35.84482428013708,
+        "distanceMeters": 46,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-28",
+      "time": "07:43:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56467521152916,
+        "longitude": 35.845173921843205,
+        "distanceMeters": 66,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-28",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56443895746324,
+        "longitude": 35.845034862541624,
+        "distanceMeters": 52,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-28",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56450274112643,
+        "longitude": 35.8451040443398,
+        "distanceMeters": 51,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-28",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564553802746666,
+        "longitude": 35.84495739308423,
+        "distanceMeters": 40,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-28",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56433858251758,
+        "longitude": 35.8451301440409,
+        "distanceMeters": 30,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-28",
+      "time": "07:23:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56441929219398,
+        "longitude": 35.84510464446332,
+        "distanceMeters": 98,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-28",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439382428102,
+        "longitude": 35.844965777210135,
+        "distanceMeters": 60,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-28-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-28",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56472972518831,
+        "longitude": 35.8447650912076,
+        "distanceMeters": 81,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793199015432
+    },
+    {
+      "id": "rec-2026-10-27-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-27",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56427040253858,
+        "longitude": 35.84493204364587,
+        "distanceMeters": 43,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-27",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564661127136546,
+        "longitude": 35.8450414448413,
+        "distanceMeters": 92,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-27",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56472339267172,
+        "longitude": 35.84495193973426,
+        "distanceMeters": 20,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-27",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56474990216543,
+        "longitude": 35.845043513442064,
+        "distanceMeters": 84,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-27",
+      "time": "07:24:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56437166025619,
+        "longitude": 35.84511753668261,
+        "distanceMeters": 45,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-27",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56447641608855,
+        "longitude": 35.84508438071807,
+        "distanceMeters": 61,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-27",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564360648339544,
+        "longitude": 35.845068461544706,
+        "distanceMeters": 90,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-27",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56443100536609,
+        "longitude": 35.84516315570083,
+        "distanceMeters": 24,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-27",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56457363030141,
+        "longitude": 35.84480723838281,
+        "distanceMeters": 22,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-27",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5646662262531,
+        "longitude": 35.84478911207838,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-27",
+      "time": "07:30:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56458839038544,
+        "longitude": 35.845149342316844,
+        "distanceMeters": 74,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-27",
+      "time": "07:31:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56440800733579,
+        "longitude": 35.84513020659922,
+        "distanceMeters": 38,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-27",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56441753033826,
+        "longitude": 35.845213918180384,
+        "distanceMeters": 71,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-27",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56441932738537,
+        "longitude": 35.84487679563162,
+        "distanceMeters": 79,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-27",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56440130220037,
+        "longitude": 35.844904573007874,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-27",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56455774990377,
+        "longitude": 35.845092690079554,
+        "distanceMeters": 24,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-27",
+      "time": "07:36:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56446793656399,
+        "longitude": 35.8448491486505,
+        "distanceMeters": 86,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-27",
+      "time": "07:37:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56460124935718,
+        "longitude": 35.84509417151453,
+        "distanceMeters": 57,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-27",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56436544179622,
+        "longitude": 35.84499723835242,
+        "distanceMeters": 31,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-27",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564403148059974,
+        "longitude": 35.84506253682347,
+        "distanceMeters": 38,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-27",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564629397532066,
+        "longitude": 35.84494098541738,
+        "distanceMeters": 85,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-27",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439334821531,
+        "longitude": 35.84490264164453,
+        "distanceMeters": 62,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-27",
+      "time": "07:42:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56430108033796,
+        "longitude": 35.84494544869457,
+        "distanceMeters": 78,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-27",
+      "time": "07:43:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56443469837381,
+        "longitude": 35.844852681424264,
+        "distanceMeters": 22,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-27",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56446801271004,
+        "longitude": 35.84498174006155,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-27",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56425566889992,
+        "longitude": 35.84509124615877,
+        "distanceMeters": 68,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-27",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56441234436048,
+        "longitude": 35.84494513938848,
+        "distanceMeters": 46,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-27",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56465255254479,
+        "longitude": 35.844857804397606,
+        "distanceMeters": 71,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-27",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564541590275134,
+        "longitude": 35.844959675571864,
+        "distanceMeters": 65,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-27",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464636505855,
+        "longitude": 35.84514357516574,
+        "distanceMeters": 92,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-27-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-27",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5643689795205,
+        "longitude": 35.84514221519886,
+        "distanceMeters": 55,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793112615432
+    },
+    {
+      "id": "rec-2026-10-26-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-26",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56442063009329,
+        "longitude": 35.84518028950569,
+        "distanceMeters": 88,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-26",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56461222062846,
+        "longitude": 35.84516386715846,
+        "distanceMeters": 89,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-26",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56462469403091,
+        "longitude": 35.845061322449766,
+        "distanceMeters": 67,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-26",
+      "time": "07:23:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56427143210485,
+        "longitude": 35.84487710701374,
+        "distanceMeters": 80,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-26",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56463380183408,
+        "longitude": 35.84516250561721,
+        "distanceMeters": 88,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-26",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564693364675385,
+        "longitude": 35.84514690249901,
+        "distanceMeters": 93,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-26",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564399236942634,
+        "longitude": 35.844997403911876,
+        "distanceMeters": 94,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-26",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56446753865477,
+        "longitude": 35.84484376655181,
+        "distanceMeters": 54,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-26",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56452133583091,
+        "longitude": 35.84500148167629,
+        "distanceMeters": 80,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-26",
+      "time": "07:29:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56452648823256,
+        "longitude": 35.8451678302646,
+        "distanceMeters": 99,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-26",
+      "time": "07:30:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56428377158812,
+        "longitude": 35.84519843441503,
+        "distanceMeters": 52,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-26",
+      "time": "07:31:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564562122888354,
+        "longitude": 35.845241262257986,
+        "distanceMeters": 64,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-26",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56447980237026,
+        "longitude": 35.844818741610375,
+        "distanceMeters": 51,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-26",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564730944853444,
+        "longitude": 35.84481137547198,
+        "distanceMeters": 21,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-26",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56466693269043,
+        "longitude": 35.844827777263866,
+        "distanceMeters": 60,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-26",
+      "time": "07:35:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56446578423955,
+        "longitude": 35.84515039391095,
+        "distanceMeters": 71,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-26",
+      "time": "07:36:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564732625043405,
+        "longitude": 35.844937156977934,
+        "distanceMeters": 85,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-26",
+      "time": "07:37:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56466102626099,
+        "longitude": 35.844803105896425,
+        "distanceMeters": 43,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-26",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564721859075206,
+        "longitude": 35.845208977897094,
+        "distanceMeters": 29,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-26",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464985157372,
+        "longitude": 35.845027605257116,
+        "distanceMeters": 63,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-26",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56448659393162,
+        "longitude": 35.84477902591188,
+        "distanceMeters": 53,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-26",
+      "time": "07:41:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56461980222767,
+        "longitude": 35.84483103591167,
+        "distanceMeters": 84,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-26",
+      "time": "07:42:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564620028218975,
+        "longitude": 35.84500475316867,
+        "distanceMeters": 39,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-26",
+      "time": "07:43:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56429065672568,
+        "longitude": 35.845126985246374,
+        "distanceMeters": 63,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-26",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464425554982,
+        "longitude": 35.845020068693906,
+        "distanceMeters": 71,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-26",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464502113442,
+        "longitude": 35.84520034751514,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-26",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56442336002397,
+        "longitude": 35.84493859828065,
+        "distanceMeters": 75,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-26",
+      "time": "07:22:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.564370283837846,
+        "longitude": 35.84507694299011,
+        "distanceMeters": 56,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-26",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56443595800076,
+        "longitude": 35.844780522414354,
+        "distanceMeters": 98,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-26",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56449574408145,
+        "longitude": 35.84485464088311,
+        "distanceMeters": 67,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-26-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-26",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56463762071252,
+        "longitude": 35.845044592367664,
+        "distanceMeters": 95,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1793026215432
+    },
+    {
+      "id": "rec-2026-10-25-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-25",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56451333909545,
+        "longitude": 35.84521669915937,
+        "distanceMeters": 41,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-25",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56437479863004,
+        "longitude": 35.84478155228037,
+        "distanceMeters": 52,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-25",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56438840104294,
+        "longitude": 35.844856232112136,
+        "distanceMeters": 96,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-25",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56457501217108,
+        "longitude": 35.84486135676013,
+        "distanceMeters": 50,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-25",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56456777078376,
+        "longitude": 35.84516025798598,
+        "distanceMeters": 33,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-25",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56473434067062,
+        "longitude": 35.84481562548875,
+        "distanceMeters": 73,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-25",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5643655370886,
+        "longitude": 35.84511857188814,
+        "distanceMeters": 41,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-25",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564719495834865,
+        "longitude": 35.844970060990256,
+        "distanceMeters": 81,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-25",
+      "time": "07:28:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56474359925311,
+        "longitude": 35.84493289395524,
+        "distanceMeters": 55,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-25",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56462632661634,
+        "longitude": 35.84523659534969,
+        "distanceMeters": 97,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-25",
+      "time": "07:30:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56450140127891,
+        "longitude": 35.84505438339289,
+        "distanceMeters": 88,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-25",
+      "time": "07:31:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464731934925,
+        "longitude": 35.84520155995897,
+        "distanceMeters": 42,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-25",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56455511237393,
+        "longitude": 35.84478067468738,
+        "distanceMeters": 58,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-25",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564748907241146,
+        "longitude": 35.84503182650067,
+        "distanceMeters": 23,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-25",
+      "time": "07:34:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.564680704668376,
+        "longitude": 35.84482958394104,
+        "distanceMeters": 81,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-25",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56453084721529,
+        "longitude": 35.845067234571566,
+        "distanceMeters": 87,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-25",
+      "time": "07:36:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564421636413016,
+        "longitude": 35.845234946159316,
+        "distanceMeters": 83,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-25",
+      "time": "07:37:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564399439601345,
+        "longitude": 35.8450287210379,
+        "distanceMeters": 70,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-25",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56452147481734,
+        "longitude": 35.844930962053176,
+        "distanceMeters": 92,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-25",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5646761166081,
+        "longitude": 35.845157829756936,
+        "distanceMeters": 37,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-25",
+      "time": "07:40:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56444159898293,
+        "longitude": 35.844800849754215,
+        "distanceMeters": 58,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-25",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564537802096616,
+        "longitude": 35.84487295602735,
+        "distanceMeters": 54,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-25",
+      "time": "07:42:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56452255057363,
+        "longitude": 35.84509836699547,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-25",
+      "time": "07:43:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56469543314579,
+        "longitude": 35.844863481853615,
+        "distanceMeters": 78,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-25",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56435054419698,
+        "longitude": 35.84510170204841,
+        "distanceMeters": 33,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-25",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564307602733905,
+        "longitude": 35.84524595141013,
+        "distanceMeters": 30,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-25",
+      "time": "07:21:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56441921791697,
+        "longitude": 35.844953390605404,
+        "distanceMeters": 24,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-25",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564259601079335,
+        "longitude": 35.845091508069835,
+        "distanceMeters": 90,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-25",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564574753160294,
+        "longitude": 35.84484768768922,
+        "distanceMeters": 63,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-25",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564636573164634,
+        "longitude": 35.84524015472536,
+        "distanceMeters": 65,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-25-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-25",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5645105550246,
+        "longitude": 35.845233473472305,
+        "distanceMeters": 37,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792939815432
+    },
+    {
+      "id": "rec-2026-10-22-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-22",
+      "time": "07:20:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.564666539317884,
+        "longitude": 35.845204681099524,
+        "distanceMeters": 26,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-22",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564340159524754,
+        "longitude": 35.84490197291766,
+        "distanceMeters": 97,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-22",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564372061821636,
+        "longitude": 35.84490697464869,
+        "distanceMeters": 75,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-22",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564541139034475,
+        "longitude": 35.84505885915315,
+        "distanceMeters": 76,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-22",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56437206286697,
+        "longitude": 35.84517025079502,
+        "distanceMeters": 58,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-22",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56431076566565,
+        "longitude": 35.84500460558568,
+        "distanceMeters": 66,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-22",
+      "time": "07:26:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56467752896564,
+        "longitude": 35.84511554616432,
+        "distanceMeters": 64,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-22",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56432485485456,
+        "longitude": 35.8450682716988,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-22",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56460183162882,
+        "longitude": 35.84477801707942,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-22",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56466884711939,
+        "longitude": 35.84506661887364,
+        "distanceMeters": 22,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-22",
+      "time": "07:30:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56436355790887,
+        "longitude": 35.84477502001778,
+        "distanceMeters": 62,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-22",
+      "time": "07:31:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56454380602068,
+        "longitude": 35.84506031271818,
+        "distanceMeters": 99,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-22",
+      "time": "07:32:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.564465518298626,
+        "longitude": 35.84513719566646,
+        "distanceMeters": 49,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-22",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56435900328679,
+        "longitude": 35.84520700690154,
+        "distanceMeters": 76,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-22",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56442600357699,
+        "longitude": 35.84485794763863,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-22",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56429952367439,
+        "longitude": 35.845078199803496,
+        "distanceMeters": 58,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-22",
+      "time": "07:36:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56427160803312,
+        "longitude": 35.84487709267207,
+        "distanceMeters": 49,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-22",
+      "time": "07:37:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564612552681496,
+        "longitude": 35.84481547711942,
+        "distanceMeters": 23,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-22",
+      "time": "07:38:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.56462498459729,
+        "longitude": 35.84518087353762,
+        "distanceMeters": 99,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-22",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56445089633887,
+        "longitude": 35.84521181848404,
+        "distanceMeters": 82,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-22",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5646694498034,
+        "longitude": 35.84482835186821,
+        "distanceMeters": 21,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-22",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56428691531703,
+        "longitude": 35.84518317358442,
+        "distanceMeters": 22,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-22",
+      "time": "07:42:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564683500232235,
+        "longitude": 35.84496648637837,
+        "distanceMeters": 64,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-22",
+      "time": "07:43:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5644953636897,
+        "longitude": 35.845104131178324,
+        "distanceMeters": 74,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-22",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56432992411831,
+        "longitude": 35.845055962271,
+        "distanceMeters": 64,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-22",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56426561505088,
+        "longitude": 35.84516548218504,
+        "distanceMeters": 56,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-22",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56469973094946,
+        "longitude": 35.84476826623688,
+        "distanceMeters": 32,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-22",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56465451168618,
+        "longitude": 35.84509260596539,
+        "distanceMeters": 84,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-22",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56427262380222,
+        "longitude": 35.84481092171994,
+        "distanceMeters": 62,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-22",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56458868695659,
+        "longitude": 35.84494807906455,
+        "distanceMeters": 83,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-22-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-22",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439833521206,
+        "longitude": 35.844840544562686,
+        "distanceMeters": 61,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792680615432
+    },
+    {
+      "id": "rec-2026-10-21-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-21",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56440796935436,
+        "longitude": 35.84495653484695,
+        "distanceMeters": 38,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-21",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56464579460593,
+        "longitude": 35.84503506799791,
+        "distanceMeters": 24,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-21",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564467901882395,
+        "longitude": 35.84489649916636,
+        "distanceMeters": 99,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-21",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56432145384392,
+        "longitude": 35.844852152343265,
+        "distanceMeters": 51,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-21",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5643468453512,
+        "longitude": 35.84483481577016,
+        "distanceMeters": 87,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-21",
+      "time": "07:25:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56466153926445,
+        "longitude": 35.84502007862948,
+        "distanceMeters": 67,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-21",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56430346561831,
+        "longitude": 35.84478655224372,
+        "distanceMeters": 42,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-21",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564645305014714,
+        "longitude": 35.844982562004475,
+        "distanceMeters": 84,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-21",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56473993142037,
+        "longitude": 35.84502595351488,
+        "distanceMeters": 89,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-21",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56468997524376,
+        "longitude": 35.84483090335663,
+        "distanceMeters": 73,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-21",
+      "time": "07:30:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5644644055922,
+        "longitude": 35.8449701322744,
+        "distanceMeters": 68,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-21",
+      "time": "07:31:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56439435634831,
+        "longitude": 35.8451827623881,
+        "distanceMeters": 42,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-21",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56472476729163,
+        "longitude": 35.844957092214685,
+        "distanceMeters": 45,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-21",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56467167555866,
+        "longitude": 35.84496986853876,
+        "distanceMeters": 84,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-21",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56458269888645,
+        "longitude": 35.84493102438575,
+        "distanceMeters": 88,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-21",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56463979120724,
+        "longitude": 35.844782497468245,
+        "distanceMeters": 27,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-21",
+      "time": "07:36:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5645875685598,
+        "longitude": 35.844934667761045,
+        "distanceMeters": 59,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-21",
+      "time": "07:37:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56457727220825,
+        "longitude": 35.844792279291056,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-21",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564266956162406,
+        "longitude": 35.84501322499671,
+        "distanceMeters": 35,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-21",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564377797422374,
+        "longitude": 35.84510409890256,
+        "distanceMeters": 20,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-21",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56448716490286,
+        "longitude": 35.84503702377766,
+        "distanceMeters": 61,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-21",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564285667957506,
+        "longitude": 35.84478930053117,
+        "distanceMeters": 72,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-21",
+      "time": "07:42:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56444295888361,
+        "longitude": 35.84515225827868,
+        "distanceMeters": 74,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-21",
+      "time": "07:43:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.564260946655594,
+        "longitude": 35.84515124031327,
+        "distanceMeters": 58,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-21",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56451450140549,
+        "longitude": 35.845118721442276,
+        "distanceMeters": 37,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-21",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5642842845682,
+        "longitude": 35.84488552125602,
+        "distanceMeters": 93,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-21",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564405335061295,
+        "longitude": 35.84485272482453,
+        "distanceMeters": 88,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-21",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56466527558724,
+        "longitude": 35.84505602886666,
+        "distanceMeters": 34,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-21",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5645334616383,
+        "longitude": 35.84512426549222,
+        "distanceMeters": 85,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-21",
+      "time": "07:24:00",
+      "status": "مغادرة",
+      "notes": "مغادرة رسمية مرخصة - ساعة ونصف",
+      "departureTime": "11:30",
+      "location": {
+        "latitude": 32.564323675888446,
+        "longitude": 35.84513922293194,
+        "distanceMeters": 38,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-21-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-21",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564595993179296,
+        "longitude": 35.84477889999845,
+        "distanceMeters": 84,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792594215432
+    },
+    {
+      "id": "rec-2026-10-20-10510884",
+      "teacherId": "10510884",
+      "teacherName": "لؤي تيسير نمر الخطيب",
+      "date": "2026-10-20",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56432985251669,
+        "longitude": 35.84518662907066,
+        "distanceMeters": 27,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10511588",
+      "teacherId": "10511588",
+      "teacherName": "فادي عبدالله سلمان ثابت",
+      "date": "2026-10-20",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56467146379134,
+        "longitude": 35.84522337605011,
+        "distanceMeters": 47,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30043214",
+      "teacherId": "30043214",
+      "teacherName": "Mahmoud Hamed Moh'd Al-shannik",
+      "date": "2026-10-20",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56435663679903,
+        "longitude": 35.845028036408216,
+        "distanceMeters": 86,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10512150",
+      "teacherId": "10512150",
+      "teacherName": "محمد ابراهيم حجازي",
+      "date": "2026-10-20",
+      "time": "07:23:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56448579818887,
+        "longitude": 35.845048173677945,
+        "distanceMeters": 53,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30034197",
+      "teacherId": "30034197",
+      "teacherName": "Osama Husain Abdallah Shoubaki",
+      "date": "2026-10-20",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564378753108436,
+        "longitude": 35.84485996884599,
+        "distanceMeters": 39,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10541315",
+      "teacherId": "10541315",
+      "teacherName": "معاذ ابراهيم جوابرة",
+      "date": "2026-10-20",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5642982202242,
+        "longitude": 35.84475960762084,
+        "distanceMeters": 30,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10513454",
+      "teacherId": "10513454",
+      "teacherName": "أحمد خليل عطية عبيد",
+      "date": "2026-10-20",
+      "time": "07:26:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56461901006722,
+        "longitude": 35.845091021906796,
+        "distanceMeters": 46,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10513796",
+      "teacherId": "10513796",
+      "teacherName": "احمد جمعه رجا مشركي",
+      "date": "2026-10-20",
+      "time": "07:27:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56426241719674,
+        "longitude": 35.8449301918184,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30040743",
+      "teacherId": "30040743",
+      "teacherName": "ثائر ابراهيم عيسى الكرنز",
+      "date": "2026-10-20",
+      "time": "07:28:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56444221081978,
+        "longitude": 35.84490412195829,
+        "distanceMeters": 20,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10774141",
+      "teacherId": "10774141",
+      "teacherName": "عبدالرحمن يوسف محمد الهدبة",
+      "date": "2026-10-20",
+      "time": "07:29:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564267948047444,
+        "longitude": 35.845193248028124,
+        "distanceMeters": 73,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30043221",
+      "teacherId": "30043221",
+      "teacherName": "Ahmad Mohammad Mustafa Rababa",
+      "date": "2026-10-20",
+      "time": "07:30:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.56458389108722,
+        "longitude": 35.84486187662177,
+        "distanceMeters": 46,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10540399",
+      "teacherId": "10540399",
+      "teacherName": "اسماعيل خليل محمد ابوناموس",
+      "date": "2026-10-20",
+      "time": "07:31:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56460772734081,
+        "longitude": 35.8450483815959,
+        "distanceMeters": 49,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10778122",
+      "teacherId": "10778122",
+      "teacherName": "لؤي أحمد عبد الله حسين",
+      "date": "2026-10-20",
+      "time": "07:32:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564402379485664,
+        "longitude": 35.84502621916654,
+        "distanceMeters": 48,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10510080",
+      "teacherId": "10510080",
+      "teacherName": "جهاد علي حسن أبو راشد",
+      "date": "2026-10-20",
+      "time": "07:33:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56428784506122,
+        "longitude": 35.84484958007831,
+        "distanceMeters": 73,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10775910",
+      "teacherId": "10775910",
+      "teacherName": "ابراهيم عويض سليمان جرادات",
+      "date": "2026-10-20",
+      "time": "07:34:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56439411800052,
+        "longitude": 35.84500087603192,
+        "distanceMeters": 96,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10778090",
+      "teacherId": "10778090",
+      "teacherName": "احمد محمد محمود صالح",
+      "date": "2026-10-20",
+      "time": "07:35:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56443143422385,
+        "longitude": 35.844780253449166,
+        "distanceMeters": 98,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10513032",
+      "teacherId": "10513032",
+      "teacherName": "محمد جابر محمود ابو شكيان",
+      "date": "2026-10-20",
+      "time": "07:36:00",
+      "status": "طارئة",
+      "notes": "ظرف عائلي طارئ",
+      "location": {
+        "latitude": 32.564488519523074,
+        "longitude": 35.8449704886639,
+        "distanceMeters": 43,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10774178",
+      "teacherId": "10774178",
+      "teacherName": "محمد صالح سالم مزاري",
+      "date": "2026-10-20",
+      "time": "07:37:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564648317751214,
+        "longitude": 35.84520842363888,
+        "distanceMeters": 57,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10511687",
+      "teacherId": "10511687",
+      "teacherName": "عبدالله محمد سعيد جابر",
+      "date": "2026-10-20",
+      "time": "07:38:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56436271713891,
+        "longitude": 35.844755656140926,
+        "distanceMeters": 74,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10524688",
+      "teacherId": "10524688",
+      "teacherName": "حازم عادل احمد الغول",
+      "date": "2026-10-20",
+      "time": "07:39:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56465324386281,
+        "longitude": 35.84506105047434,
+        "distanceMeters": 97,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10513499",
+      "teacherId": "10513499",
+      "teacherName": "طارق محمود حمد حسين",
+      "date": "2026-10-20",
+      "time": "07:40:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564721802865996,
+        "longitude": 35.845050225351336,
+        "distanceMeters": 69,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10512759",
+      "teacherId": "10512759",
+      "teacherName": "عبد الكريم عبد العزيز سالم الجماحوي",
+      "date": "2026-10-20",
+      "time": "07:41:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56455676648655,
+        "longitude": 35.84500210759128,
+        "distanceMeters": 78,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10540832",
+      "teacherId": "10540832",
+      "teacherName": "علي أحمد ناجي كممجي",
+      "date": "2026-10-20",
+      "time": "07:42:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56472015391564,
+        "longitude": 35.84493182153062,
+        "distanceMeters": 65,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10513388",
+      "teacherId": "10513388",
+      "teacherName": "لؤي أحمد علي السيد",
+      "date": "2026-10-20",
+      "time": "07:43:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56442521223978,
+        "longitude": 35.84494010369013,
+        "distanceMeters": 95,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10520135",
+      "teacherId": "10520135",
+      "teacherName": "أحمد خضر المحمد",
+      "date": "2026-10-20",
+      "time": "07:44:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564375961650235,
+        "longitude": 35.84516997059577,
+        "distanceMeters": 97,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10511435",
+      "teacherId": "10511435",
+      "teacherName": "عاصم محمد عبد مصطفى",
+      "date": "2026-10-20",
+      "time": "07:20:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56452553651781,
+        "longitude": 35.84506754480891,
+        "distanceMeters": 35,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10540082",
+      "teacherId": "10540082",
+      "teacherName": "شادي سعيد مشرقي",
+      "date": "2026-10-20",
+      "time": "07:21:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56435049358831,
+        "longitude": 35.845031074199426,
+        "distanceMeters": 44,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30034724",
+      "teacherId": "30034724",
+      "teacherName": "صهيب علي سالم عبيدات",
+      "date": "2026-10-20",
+      "time": "07:22:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.5645381947945,
+        "longitude": 35.84485015409756,
+        "distanceMeters": 35,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30041068",
+      "teacherId": "30041068",
+      "teacherName": "علاء جلال انيس الشواهنه",
+      "date": "2026-10-20",
+      "time": "07:23:00",
+      "status": "مرضية",
+      "notes": "مراجعة طبية عيادة الوكالة",
+      "location": {
+        "latitude": 32.56446828570544,
+        "longitude": 35.844939348473616,
+        "distanceMeters": 29,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-10513658",
+      "teacherId": "10513658",
+      "teacherName": "غسان محمد ذياب المشرقي",
+      "date": "2026-10-20",
+      "time": "07:24:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.56435000957882,
+        "longitude": 35.84495134420918,
+        "distanceMeters": 46,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    },
+    {
+      "id": "rec-2026-10-20-30040821",
+      "teacherId": "30040821",
+      "teacherName": "محمد عماد يوسف كميل",
+      "date": "2026-10-20",
+      "time": "07:25:00",
+      "status": "حاضر",
+      "notes": "",
+      "location": {
+        "latitude": 32.564622206958575,
+        "longitude": 35.84484244923344,
+        "distanceMeters": 53,
+        "withinGeofence": true
+      },
+      "recordedBy": "teacher",
+      "timestamp": 1792507815432
+    }
+  ],
+  "settings": {
+    "enabled": true,
+    "latitude": 32.5645,
+    "longitude": 35.845,
+    "radiusMeters": 350,
+    "schoolName": "مدرسة ذكور مدينة اربد الاعدادية الثانية",
+    "principalName": "لؤي تيسير نمر الخطيب",
+    "locationLabel": "اربد - شارع فوعرا (مدرسة الخطيب)"
+  },
+  "notifications": [
+    {
+      "id": "notif-init",
+      "teacherId": "10510884",
+      "teacherName": "مدير المدرسة لؤي الخطيب",
+      "status": "حاضر",
+      "time": "07:15:00",
+      "date": "2026-10-30",
+      "timestamp": 1793371815433,
+      "read": false,
+      "message": "تم تدشين نظام تسجيل الحضور الالكتروني لمدرسة ذكور مدينة اربد الاعدادية الثانية."
+    }
+  ]
+}
