@@ -214,7 +214,7 @@ export default function App() {
     };
   }, [fetchData, soundEnabled]);
 
-  // Auth Handlers
+  // Auth Handlers with static fallback
   const handleLogin = async (id: string, pass: string) => {
     try {
       const res = await fetch('/api/auth/login', {
@@ -223,16 +223,28 @@ export default function App() {
         body: JSON.stringify({ id, password: pass }),
       });
 
-      const data = await res.json();
-      if (!res.ok) {
-        return { success: false, error: data.error || 'فشل تسجيل الدخول' };
+      if (res.ok) {
+        const data = await res.json();
+        setCurrentUser(data.user);
+        localStorage.setItem('school_user', JSON.stringify(data.user));
+        return { success: true };
       }
-
-      setCurrentUser(data.user);
-      localStorage.setItem('school_user', JSON.stringify(data.user));
-      return { success: true };
+      const data = await res.json();
+      return { success: false, error: data.error || 'فشل تسجيل الدخول' };
     } catch {
-      return { success: false, error: 'تعذر الاتصال بالخادم، يرجى المحاولة لاحقاً' };
+      // Local fallback (e.g. on GitHub Pages static deployment)
+      const teacher = teachers.find((t) => t.id === id.trim());
+      if (!teacher) {
+        return { success: false, error: 'الرقم الوظيفي غير موجود في سجلات المدرسة' };
+      }
+      const expectedPass = teacher.password || '12345';
+      if (pass !== expectedPass) {
+        return { success: false, error: 'كلمة المرور غير صحيحة' };
+      }
+      const { password: _, ...safeUser } = teacher;
+      setCurrentUser(safeUser);
+      localStorage.setItem('school_user', JSON.stringify(safeUser));
+      return { success: true };
     }
   };
 
@@ -249,15 +261,40 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: currentUser.id, newPassword }),
       });
+      if (res.ok) {
+        return { success: true };
+      }
       const data = await res.json();
-      return { success: res.ok, error: data.error };
+      return { success: false, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في الاتصال' };
+      // Local fallback
+      setTeachers((prev) =>
+        prev.map((t) => (t.id === currentUser.id ? { ...t, password: newPassword } : t))
+      );
+      return { success: true };
     }
   };
 
-  // Attendance Handlers
+  // Attendance Handlers with static fallback
   const handleRecordAttendance = async (payload: any) => {
+    const now = new Date();
+    const dateStr = payload.customDate || now.toISOString().split('T')[0];
+    const timeStr = now.toTimeString().split(' ')[0];
+
+    const localRecord: AttendanceRecord = {
+      id: `rec-${Date.now()}-${payload.teacherId}`,
+      teacherId: payload.teacherId,
+      teacherName: teachers.find((t) => t.id === payload.teacherId)?.name || 'معلم',
+      date: dateStr,
+      time: timeStr,
+      status: payload.status,
+      notes: payload.notes || '',
+      departureTime: payload.departureTime,
+      departureDuration: payload.departureDuration,
+      recordedBy: payload.recordedBy || 'teacher',
+      timestamp: Date.now(),
+    };
+
     try {
       const res = await fetch('/api/attendance', {
         method: 'POST',
@@ -270,7 +307,30 @@ export default function App() {
       }
       return { success: true, record: data.record };
     } catch {
-      return { success: false, error: 'خطأ في حفظ الحضور في السحابة' };
+      // Local fallback
+      setTodayAttendance((prev) => [
+        localRecord,
+        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
+      ]);
+      setAllAttendance((prev) => [
+        localRecord,
+        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
+      ]);
+
+      const notif: NotificationItem = {
+        id: `notif-${Date.now()}`,
+        teacherId: localRecord.teacherId,
+        teacherName: localRecord.teacherName,
+        status: localRecord.status,
+        time: timeStr,
+        date: dateStr,
+        timestamp: Date.now(),
+        read: false,
+        message: `سجل المعلم ${localRecord.teacherName} حالته: (${localRecord.status}) في تمام الساعة ${timeStr}`,
+      };
+      setNotifications((prev) => [notif, ...prev]);
+
+      return { success: true, record: localRecord };
     }
   };
 
@@ -279,6 +339,9 @@ export default function App() {
     status: AttendanceStatus,
     date?: string
   ) => {
+    const targetDate = date || new Date().toISOString().split('T')[0];
+    const timeStr = new Date().toTimeString().split(' ')[0];
+
     try {
       const res = await fetch('/api/attendance/batch', {
         method: 'POST',
@@ -288,7 +351,28 @@ export default function App() {
       const data = await res.json();
       return { success: res.ok, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في التسجيل الجماعي' };
+      // Local fallback
+      const batchRecords: AttendanceRecord[] = teacherIds.map((tid) => ({
+        id: `rec-${Date.now()}-${tid}`,
+        teacherId: tid,
+        teacherName: teachers.find((t) => t.id === tid)?.name || 'معلم',
+        date: targetDate,
+        time: timeStr,
+        status,
+        notes: 'تم التسجيل بواسطة إدارة المدرسة',
+        recordedBy: 'principal',
+        recordedByName: 'مدير المدرسة (لؤي الخطيب)',
+        timestamp: Date.now(),
+      }));
+
+      setTodayAttendance((prev) => {
+        const map = new Map(prev.map((r) => [r.teacherId, r]));
+        batchRecords.forEach((r) => map.set(r.teacherId, r));
+        return Array.from(map.values());
+      });
+      setAllAttendance((prev) => [...batchRecords, ...prev]);
+
+      return { success: true };
     }
   };
 
@@ -296,14 +380,34 @@ export default function App() {
     try {
       const res = await fetch(`/api/attendance/${id}`, { method: 'DELETE' });
       const data = await res.json();
-      return { success: res.ok, error: data.error };
+      if (res.ok) {
+        setTodayAttendance((prev) => prev.filter((r) => r.id !== id));
+        setAllAttendance((prev) => prev.filter((r) => r.id !== id));
+        return { success: true };
+      }
+      return { success: false, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في الحذف' };
+      setTodayAttendance((prev) => prev.filter((r) => r.id !== id));
+      setAllAttendance((prev) => prev.filter((r) => r.id !== id));
+      return { success: true };
     }
   };
 
-  // Teacher CRUD Handlers
+  // Teacher CRUD Handlers with static fallback
   const handleAddTeacher = async (teacher: Partial<Teacher>) => {
+    const newT: Teacher = {
+      id: String(teacher.id).trim(),
+      name: String(teacher.name).trim(),
+      jobTitle: teacher.jobTitle || 'معلم',
+      specialty: teacher.specialty || 'عام',
+      phone: teacher.phone || '',
+      nationalId: teacher.nationalId || '',
+      gender: teacher.gender || 'ذكر',
+      role: teacher.role || 'teacher',
+      password: teacher.password || '12345',
+      leaveBalance: { emergency: 7, sick: 14 },
+    };
+
     try {
       const res = await fetch('/api/teachers', {
         method: 'POST',
@@ -311,9 +415,14 @@ export default function App() {
         body: JSON.stringify(teacher),
       });
       const data = await res.json();
-      return { success: res.ok, error: data.error };
+      if (res.ok) {
+        setTeachers((prev) => [...prev, data.teacher]);
+        return { success: true };
+      }
+      return { success: false, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في إضافة المعلم' };
+      setTeachers((prev) => [...prev, newT]);
+      return { success: true };
     }
   };
 
@@ -325,9 +434,16 @@ export default function App() {
         body: JSON.stringify(updates),
       });
       const data = await res.json();
-      return { success: res.ok, error: data.error };
+      if (res.ok) {
+        setTeachers((prev) => prev.map((t) => (t.id === id ? data.teacher : t)));
+        return { success: true };
+      }
+      return { success: false, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في تعديل المعلم' };
+      setTeachers((prev) =>
+        prev.map((t) => (t.id === id ? ({ ...t, ...updates } as Teacher) : t))
+      );
+      return { success: true };
     }
   };
 
@@ -335,13 +451,18 @@ export default function App() {
     try {
       const res = await fetch(`/api/teachers/${id}`, { method: 'DELETE' });
       const data = await res.json();
-      return { success: res.ok, error: data.error };
+      if (res.ok) {
+        setTeachers((prev) => prev.filter((t) => t.id !== id));
+        return { success: true };
+      }
+      return { success: false, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في الحذف' };
+      setTeachers((prev) => prev.filter((t) => t.id !== id));
+      return { success: true };
     }
   };
 
-  // Settings Handler
+  // Settings Handler with static fallback
   const handleUpdateSettings = async (newSettings: Partial<GeofenceSettings>) => {
     try {
       const res = await fetch('/api/settings', {
@@ -350,9 +471,14 @@ export default function App() {
         body: JSON.stringify(newSettings),
       });
       const data = await res.json();
-      return { success: res.ok, error: data.error };
+      if (res.ok) {
+        setSettings(data.settings);
+        return { success: true };
+      }
+      return { success: false, error: data.error };
     } catch {
-      return { success: false, error: 'خطأ في حفظ الإعدادات' };
+      setSettings((prev) => ({ ...prev, ...newSettings }));
+      return { success: true };
     }
   };
 
