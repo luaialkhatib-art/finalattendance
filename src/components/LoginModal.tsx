@@ -8,7 +8,7 @@ interface LoginModalProps {
 export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
   const [roleTab, setRoleTab] = useState<'teacher' | 'principal'>('teacher');
   const [employeeId, setEmployeeId] = useState('');
-  const [password, setPassword] = useState('12345');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,13 +32,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
     if (!result.success) {
       setError(result.error || 'فشل تسجيل الدخول، يرجى التأكد من الرقم الوظيفي وكلمة المرور');
     }
-  };
-
-  const handleQuickDemo = (id: string, role: 'teacher' | 'principal') => {
-    setRoleTab(role);
-    setEmployeeId(id);
-    setPassword('12345');
-    setError(null);
   };
 
   return (
@@ -86,7 +79,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
             type="button"
             onClick={() => {
               setRoleTab('principal');
-              setEmployeeId('10510884'); // Pre-fill principal ID
+              setEmployeeId('');
               setError(null);
             }}
             className={`flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold transition-all ${
@@ -118,7 +111,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
                 type="text"
                 value={employeeId}
                 onChange={(e) => setEmployeeId(e.target.value)}
-                placeholder={roleTab === 'principal' ? 'مثال: 10510884' : 'أدخل رقمك الوظيفي المعتمد'}
+                placeholder={roleTab === 'principal' ? 'أدخل الرقم الوظيفي لمدير المدرسة' : 'أدخل رقمك الوظيفي المعتمد'}
                 className="w-full bg-slate-800/90 border border-sky-600/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 rounded-2xl px-4 py-3 text-white placeholder-slate-500 text-sm outline-none transition"
                 required
               />
@@ -131,7 +124,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-xs font-bold text-sky-200">كلمة المرور</label>
-              <span className="text-[11px] text-amber-300 font-mono">الافتراضية: 12345</span>
             </div>
             <div className="relative">
               <input
@@ -165,50 +157,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
             <span>{loading ? 'جارٍ التحقق...' : 'دخول إلى النظام'}</span>
           </button>
         </form>
-
-        {/* Quick Demo Access Bar */}
-        <div className="mt-6 pt-5 border-t border-sky-800/40">
-          <p className="text-[11px] font-bold text-sky-300/80 mb-2.5 text-center">
-            اختصارات تجريبية سريعة بنقرة واحدة (كلمة السر 12345):
-          </p>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <button
-              type="button"
-              onClick={() => handleQuickDemo('10510884', 'principal')}
-              className="p-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-semibold text-right transition"
-            >
-              <div className="font-bold">مدير المدرسة</div>
-              <div className="text-[10px] text-amber-200/70">لؤي الخطيب (10510884)</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickDemo('10511588', 'teacher')}
-              className="p-2 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 font-semibold text-right transition"
-            >
-              <div className="font-bold">نائب المدير</div>
-              <div className="text-[10px] text-sky-200/70">فادي ثابت (10511588)</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickDemo('10513454', 'teacher')}
-              className="p-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-semibold text-right transition"
-            >
-              <div className="font-bold">معلم انجليزي</div>
-              <div className="text-[10px] text-cyan-200/70">أحمد عبيد (10513454)</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickDemo('10541315', 'teacher')}
-              className="p-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-semibold text-right transition"
-            >
-              <div className="font-bold">معلم حاسوب</div>
-              <div className="text-[10px] text-cyan-200/70">معاذ جوابرة (10541315)</div>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
