@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Header } from './components/Header.tsx';
 import { LoginModal } from './components/LoginModal.tsx';
 import { TeacherPortal } from './components/TeacherPortal.tsx';
@@ -24,7 +24,20 @@ import {
   syncPendingOfflineRecords,
 } from './utils/offlineSync.ts';
 import { OfflineIndicator } from './components/OfflineIndicator.tsx';
-import { useOnlineStatus } from './hooks/useOnlineStatus.ts';
+import {
+  subscribeAttendance,
+  subscribeNotifications,
+  subscribeTeachers,
+  subscribeSettings,
+  saveAttendanceToFirebase,
+  deleteAttendanceFromFirebase,
+  saveNotificationToFirebase,
+  markAllNotificationsReadInFirebase,
+  saveTeacherToFirebase,
+  deleteTeacherFromFirebase,
+  saveSettingsToFirebase,
+  seedInitialFirestoreData,
+} from './firebase.ts';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<Teacher | null>(() => {
@@ -40,14 +53,17 @@ export default function App() {
     const cached = getCachedTeachers();
     return cached && cached.length > 0 ? cached : INITIAL_TEACHERS;
   });
+
   const [todayAttendance, setTodayAttendance] = useState<AttendanceRecord[]>([]);
   const [allAttendance, setAllAttendance] = useState<AttendanceRecord[]>(() => {
     return getCachedRecords();
   });
+
   const [settings, setSettings] = useState<GeofenceSettings>(() => {
     const cached = getCachedSettings();
     return cached ? cached : INITIAL_GEOFENCE_SETTINGS;
   });
+
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [isConnected, setIsConnected] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -57,52 +73,9 @@ export default function App() {
   });
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
 
-  // Load initial app data
-  const fetchData = useCallback(async () => {
-    try {
-      const [initRes, attRes] = await Promise.all([
-        fetch('/api/initial-data'),
-        fetch('/api/attendance'),
-      ]);
-
-      if (initRes.ok) {
-        const data = await initRes.json();
-        if (data.teachers) {
-          setTeachers(data.teachers);
-          cacheTeachersForOffline(data.teachers);
-        }
-        if (data.todayAttendance) setTodayAttendance(data.todayAttendance);
-        if (data.settings) {
-          setSettings(data.settings);
-          cacheSettingsForOffline(data.settings);
-        }
-        if (data.notifications) setNotifications(data.notifications);
-        setIsConnected(true);
-      }
-
-      if (attRes.ok) {
-        const attData = await attRes.json();
-        if (attData.records) {
-          setAllAttendance(attData.records);
-          cacheAttendanceRecords(attData.records);
-        }
-      }
-    } catch (err) {
-      console.warn('Initial data fetch error (offline active):', err);
-      setIsConnected(false);
-      // Restore from local cache
-      const cachedT = getCachedTeachers();
-      if (cachedT && cachedT.length > 0) setTeachers(cachedT);
-      const cachedS = getCachedSettings();
-      if (cachedS) setSettings(cachedS);
-      const cachedA = getCachedRecords();
-      if (cachedA && cachedA.length > 0) {
-        setAllAttendance(cachedA);
-        const todayStr = new Date().toISOString().split('T')[0];
-        setTodayAttendance(cachedA.filter((r) => r.date === todayStr));
-      }
-    }
-  }, []);
+  // References to prevent false notification alert on initial page load
+  const isInitialLoadRef = useRef(true);
+  const knownNotificationIdsRef = useRef<Set<string>>(new Set());
 
   // Request browser Web Push notifications permission
   const requestPushPermission = () => {
@@ -116,7 +89,7 @@ export default function App() {
       setPushStatus(permission);
       if (permission === 'granted') {
         new Notification('مدرسة ذكور مدينة اربد الاعدادية الثانية', {
-          body: 'تم تفعيل إشعارات هاتف المدير بنجاح! ستصلك التنبيهات الفورية عند تسجيل أي معلم.',
+          body: 'تم تفعيل إشعارات هاتف ولابتوب المدير بنجاح! ستصلك التنبيهات الفورية السحابية عند تسجيل أي معلم.',
           icon: '/favicon.ico',
         });
         sounds.playNotificationBell();
@@ -138,126 +111,95 @@ export default function App() {
     }
   };
 
-  // Setup Server-Sent Events (SSE) for Real-Time cloud sync across devices
+  // 1. Initialize Firebase Cloud Sync with Real-Time Listeners
   useEffect(() => {
-    fetchData();
-
     if ('Notification' in window) {
       setPushStatus(Notification.permission);
     }
 
-    let eventSource: EventSource | null = null;
-    let reconnectTimeout: any = null;
+    // Seed initial school staff & settings to Firestore if not present
+    seedInitialFirestoreData(INITIAL_TEACHERS, INITIAL_GEOFENCE_SETTINGS).catch((err) => {
+      console.warn('Firestore seed check failed:', err);
+    });
 
-    const connectSSE = () => {
-      try {
-        eventSource = new EventSource('/api/events');
+    // Subscribe to real-time attendance changes from Firestore
+    const unsubAttendance = subscribeAttendance(
+      (records) => {
+        setIsConnected(true);
+        setAllAttendance(records);
+        cacheAttendanceRecords(records);
 
-        eventSource.onopen = () => {
-          setIsConnected(true);
-        };
-
-        eventSource.addEventListener('ATTENDANCE_RECORDED', (e: MessageEvent) => {
-          try {
-            const data = JSON.parse(e.data);
-            const { record, notification } = data;
-
-            setTodayAttendance((prev) => {
-              const idx = prev.findIndex(
-                (r) => r.teacherId === record.teacherId && r.date === record.date
-              );
-              if (idx >= 0) {
-                const next = [...prev];
-                next[idx] = record;
-                return next;
-              }
-              return [record, ...prev];
-            });
-
-            setAllAttendance((prev) => {
-              const idx = prev.findIndex(
-                (r) => r.teacherId === record.teacherId && r.date === record.date
-              );
-              if (idx >= 0) {
-                const next = [...prev];
-                next[idx] = record;
-                return next;
-              }
-              return [record, ...prev];
-            });
-
-            if (notification) {
-              setNotifications((prev) => [notification, ...prev.slice(0, 49)]);
-
-              // Trigger sound & push notification
-              if (soundEnabled) {
-                sounds.playNotificationBell();
-              }
-
-              showPushNotification(
-                'تسجيل حضور جديد - مدرسة ذكور مدينة اربد الاعدادية الثانية',
-                notification.message
-              );
-            }
-          } catch (err) {
-            console.error('SSE parse error:', err);
-          }
-        });
-
-        eventSource.addEventListener('BATCH_ATTENDANCE', (e: MessageEvent) => {
-          const { records } = JSON.parse(e.data);
-          setTodayAttendance((prev) => {
-            const map = new Map(prev.map((r) => [r.teacherId, r]));
-            records.forEach((r: AttendanceRecord) => map.set(r.teacherId, r));
-            return Array.from(map.values());
-          });
-          fetchData();
-        });
-
-        eventSource.addEventListener('TEACHER_ADDED', (e: MessageEvent) => {
-          const { teacher } = JSON.parse(e.data);
-          setTeachers((prev) => [...prev, teacher]);
-        });
-
-        eventSource.addEventListener('TEACHER_UPDATED', (e: MessageEvent) => {
-          const { teacher } = JSON.parse(e.data);
-          setTeachers((prev) => prev.map((t) => (t.id === teacher.id ? teacher : t)));
-        });
-
-        eventSource.addEventListener('TEACHER_DELETED', (e: MessageEvent) => {
-          const { id } = JSON.parse(e.data);
-          setTeachers((prev) => prev.filter((t) => t.id !== id));
-        });
-
-        eventSource.addEventListener('SETTINGS_UPDATED', (e: MessageEvent) => {
-          const { settings: newSettings } = JSON.parse(e.data);
-          setSettings(newSettings);
-        });
-
-        eventSource.onerror = () => {
-          setIsConnected(false);
-          eventSource?.close();
-          // Retry connecting in 4 seconds
-          clearTimeout(reconnectTimeout);
-          reconnectTimeout = setTimeout(connectSSE, 4000);
-        };
-      } catch (err) {
-        console.warn('SSE connection failed:', err);
-        setIsConnected(false);
+        const today = new Date().toISOString().split('T')[0];
+        setTodayAttendance(records.filter((r) => r.date === today));
+      },
+      (err) => {
+        console.warn('Attendance sync status:', err);
       }
-    };
+    );
 
-    connectSSE();
+    // Subscribe to real-time school notifications from Firestore
+    const unsubNotifications = subscribeNotifications(
+      (items) => {
+        setIsConnected(true);
 
-    // Fallback polling interval every 20 seconds
-    const interval = setInterval(fetchData, 20000);
+        // Check if there are newly arrived unread notifications
+        if (!isInitialLoadRef.current && items.length > 0) {
+          const newest = items[0];
+          if (newest && !newest.read && !knownNotificationIdsRef.current.has(newest.id)) {
+            // New notification arrived in real-time from phone/another device!
+            if (soundEnabled) {
+              sounds.playNotificationBell();
+            }
+            showPushNotification(
+              'تسجيل حضور جديد - مدرسة ذكور مدينة اربد الاعدادية الثانية',
+              newest.message
+            );
+          }
+        }
+
+        // Update known IDs
+        items.forEach((item) => knownNotificationIdsRef.current.add(item.id));
+        setNotifications(items);
+        isInitialLoadRef.current = false;
+      },
+      (err) => {
+        console.warn('Notifications sync status:', err);
+      }
+    );
+
+    // Subscribe to teachers list from Firestore
+    const unsubTeachers = subscribeTeachers(
+      (teacherList) => {
+        if (teacherList && teacherList.length > 0) {
+          setTeachers(teacherList);
+          cacheTeachersForOffline(teacherList);
+        }
+      },
+      (err) => {
+        console.warn('Teachers sync status:', err);
+      }
+    );
+
+    // Subscribe to settings from Firestore
+    const unsubSettings = subscribeSettings(
+      (newSettings) => {
+        if (newSettings) {
+          setSettings(newSettings);
+          cacheSettingsForOffline(newSettings);
+        }
+      },
+      (err) => {
+        console.warn('Settings sync status:', err);
+      }
+    );
 
     return () => {
-      eventSource?.close();
-      clearTimeout(reconnectTimeout);
-      clearInterval(interval);
+      unsubAttendance();
+      unsubNotifications();
+      unsubTeachers();
+      unsubSettings();
     };
-  }, [fetchData, soundEnabled]);
+  }, [soundEnabled]);
 
   // Synchronize pending offline records when network is available
   const handleSyncPendingOffline = useCallback(async () => {
@@ -273,50 +215,45 @@ export default function App() {
     setIsSyncing(true);
     try {
       const result = await syncPendingOfflineRecords(async (record) => {
-        const res = await fetch('/api/attendance', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            teacherId: record.teacherId,
-            status: record.status,
-            notes: record.notes,
-            departureTime: record.departureTime,
-            departureDuration: record.departureDuration,
-            latitude: record.location?.latitude,
-            longitude: record.location?.longitude,
-            customDate: record.date,
-            recordedBy: record.recordedBy,
-            isOfflineRecord: true,
-            originalRecordedTime: record.time,
-            timestamp: record.timestamp,
-          }),
-        });
+        // Push directly to Firebase Firestore
+        await saveAttendanceToFirebase(record);
 
-        if (res.ok) {
-          return { success: true };
-        }
-        const errData = await res.json().catch(() => ({}));
-        return { success: false, error: errData.error };
+        // Also post notification to Firestore
+        const notif: NotificationItem = {
+          id: `notif-${Date.now()}-${record.teacherId}`,
+          teacherId: record.teacherId,
+          teacherName: record.teacherName,
+          status: record.status,
+          time: record.time,
+          date: new Date().toISOString().split('T')[0],
+          targetDate: record.date,
+          timestamp: Date.now(),
+          read: false,
+          type: 'create',
+          exactChangeTime: new Date().toTimeString().split(' ')[0],
+          message: `📶 تمت المزامنة السحابية: تم تسجيل دوام المعلم ${record.teacherName} (${record.status}) لتاريخ (${record.date}) الذي تم تسجيله أوفلاين بدون إنترنت!`,
+        };
+        await saveNotificationToFirebase(notif);
+
+        return { success: true };
       });
 
       setPendingOfflineCount(result.remainingCount);
       if (result.syncedCount > 0) {
         if (soundEnabled) sounds.playSuccessChime();
-        fetchData();
       }
     } catch (e) {
       console.warn('Offline sync error:', e);
     } finally {
       setIsSyncing(false);
     }
-  }, [isSyncing, soundEnabled, fetchData]);
+  }, [isSyncing, soundEnabled]);
 
   // Auto-sync whenever returning online
   useEffect(() => {
     const onOnline = () => {
       setIsConnected(true);
       handleSyncPendingOffline();
-      fetchData();
     };
 
     const onOffline = () => {
@@ -326,7 +263,6 @@ export default function App() {
     window.addEventListener('online', onOnline);
     window.addEventListener('offline', onOffline);
 
-    // Initial check on mount
     if (typeof navigator !== 'undefined' && navigator.onLine) {
       handleSyncPendingOffline();
     }
@@ -335,40 +271,34 @@ export default function App() {
       window.removeEventListener('online', onOnline);
       window.removeEventListener('offline', onOffline);
     };
-  }, [handleSyncPendingOffline, fetchData]);
+  }, [handleSyncPendingOffline]);
 
-  // Auth Handlers with static fallback
+  // Authentication Handlers
   const handleLogin = async (id: string, pass: string) => {
+    const trimmedId = id.trim();
+    // 1. Try checking synchronized teachers list
+    const teacher = teachers.find((t) => t.id === trimmedId);
+    if (!teacher) {
+      return { success: false, error: 'الرقم الوظيفي غير موجود في سجلات المدرسة' };
+    }
+    const expectedPass = teacher.password || '12345';
+    if (pass !== expectedPass) {
+      return { success: false, error: 'كلمة المرور غير صحيحة' };
+    }
+    const { password: _, ...safeUser } = teacher;
+    setCurrentUser(safeUser);
+    localStorage.setItem('school_user', JSON.stringify(safeUser));
+
+    // Also attempt server-side login if express is active
     try {
-      const res = await fetch('/api/auth/login', {
+      fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, password: pass }),
-      });
+        body: JSON.stringify({ id: trimmedId, password: pass }),
+      }).catch(() => {});
+    } catch {}
 
-      if (res.ok) {
-        const data = await res.json();
-        setCurrentUser(data.user);
-        localStorage.setItem('school_user', JSON.stringify(data.user));
-        return { success: true };
-      }
-      const data = await res.json();
-      return { success: false, error: data.error || 'فشل تسجيل الدخول' };
-    } catch {
-      // Local fallback (e.g. on GitHub Pages static deployment)
-      const teacher = teachers.find((t) => t.id === id.trim());
-      if (!teacher) {
-        return { success: false, error: 'الرقم الوظيفي غير موجود في سجلات المدرسة' };
-      }
-      const expectedPass = teacher.password || '12345';
-      if (pass !== expectedPass) {
-        return { success: false, error: 'كلمة المرور غير صحيحة' };
-      }
-      const { password: _, ...safeUser } = teacher;
-      setCurrentUser(safeUser);
-      localStorage.setItem('school_user', JSON.stringify(safeUser));
-      return { success: true };
-    }
+    return { success: true };
   };
 
   const handleLogout = () => {
@@ -378,33 +308,35 @@ export default function App() {
 
   const handleChangePassword = async (newPassword: string) => {
     if (!currentUser) return { success: false, error: 'غير مسجل' };
+    const updatedTeacher: Teacher = {
+      ...currentUser,
+      password: newPassword,
+    };
+
     try {
-      const res = await fetch('/api/auth/change-password', {
+      await saveTeacherToFirebase(updatedTeacher);
+      setTeachers((prev) =>
+        prev.map((t) => (t.id === currentUser.id ? updatedTeacher : t))
+      );
+      // Optional backend call
+      fetch('/api/auth/change-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: currentUser.id, newPassword }),
-      });
-      if (res.ok) {
-        return { success: true };
-      }
-      const data = await res.json();
-      return { success: false, error: data.error };
-    } catch {
-      // Local fallback
-      setTeachers((prev) =>
-        prev.map((t) => (t.id === currentUser.id ? { ...t, password: newPassword } : t))
-      );
+      }).catch(() => {});
       return { success: true };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'حدث خطأ أثناء حفظ كلمة المرور' };
     }
   };
 
-  // Attendance Handlers with static fallback
+  // Attendance Recording: Direct to Firebase with instant optimistic update & offline fallback
   const handleRecordAttendance = async (payload: any) => {
     const now = new Date();
     const dateStr = payload.customDate || now.toISOString().split('T')[0];
     const exactChangeTime = now.toTimeString().split(' ')[0]; // Exact HH:mm:ss
 
-    // Check if existing record exists locally
+    // Check if existing record exists for this date and teacher
     const existing = allAttendance.find(
       (r) => r.teacherId === payload.teacherId && r.date === dateStr
     );
@@ -413,7 +345,7 @@ export default function App() {
     const teacherName = teachers.find((t) => t.id === payload.teacherId)?.name || 'معلم';
 
     const localRecord: AttendanceRecord = {
-      id: isUpdate ? existing.id : `rec-${Date.now()}-${payload.teacherId}`,
+      id: `${dateStr}_${payload.teacherId}`,
       teacherId: payload.teacherId,
       teacherName,
       date: dateStr,
@@ -429,104 +361,89 @@ export default function App() {
       lastModifiedAt: Date.now(),
       lastModifiedTime: exactChangeTime,
       lastModifiedDate: now.toISOString().split('T')[0],
+      location: payload.latitude && payload.longitude ? {
+        latitude: payload.latitude,
+        longitude: payload.longitude,
+        withinGeofence: true,
+      } : existing?.location,
     };
+
+    let notifMsg = '';
+    let notifType: NotificationItem['type'] = isUpdate ? 'update' : 'create';
+
+    if (isUpdate) {
+      notifMsg = `⚠️ تعديل حضور: قام المعلم ${teacherName} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${payload.status}] في تمام الساعة ${exactChangeTime} بالتحديد!`;
+      notifType = 'update';
+    } else if (dateStr < now.toISOString().split('T')[0]) {
+      notifMsg = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+      notifType = 'retroactive';
+    } else if (dateStr > now.toISOString().split('T')[0]) {
+      notifMsg = `📅 طلب إجازة مسبقة: قام المعلم ${teacherName} بتقديم (${payload.status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+      notifType = 'future';
+    } else {
+      notifMsg = `✓ تسجيل دوام: قام المعلم ${teacherName} بتسجيل حالته (${payload.status}) لليوم في تمام الساعة ${exactChangeTime}!`;
+      notifType = 'create';
+    }
+
+    const notif: NotificationItem = {
+      id: `notif-${Date.now()}-${payload.teacherId}`,
+      teacherId: localRecord.teacherId,
+      teacherName: localRecord.teacherName,
+      status: localRecord.status,
+      previousStatus,
+      time: exactChangeTime,
+      date: now.toISOString().split('T')[0],
+      targetDate: dateStr,
+      timestamp: Date.now(),
+      read: false,
+      type: notifType,
+      exactChangeTime,
+      message: notifMsg,
+    };
+
+    // Optimistic local update so user on mobile sees immediate confirmation
+    setTodayAttendance((prev) => [
+      localRecord,
+      ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
+    ]);
+    setAllAttendance((prev) => [
+      localRecord,
+      ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
+    ]);
+    setNotifications((prev) => [notif, ...prev]);
 
     const isOffline = typeof navigator !== 'undefined' && !navigator.onLine;
 
-    // Fast-track offline path
     if (isOffline) {
       localRecord.isOfflineRecord = true;
       addToOfflineQueue(localRecord);
       setPendingOfflineCount(getOfflineQueue().length);
-
-      setTodayAttendance((prev) => [
-        localRecord,
-        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
-      ]);
-      setAllAttendance((prev) => [
-        localRecord,
-        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
-      ]);
-
-      const notifMsg = `💾 تسجيل أوفلاين: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ (${dateStr}) بدون اتصال بالإنترنت! تم حفظ السجل بأمان على الهاتف وسيتم إرساله تلقائياً فور توفر النت.`;
-      const notif: NotificationItem = {
-        id: `notif-${Date.now()}`,
-        teacherId: localRecord.teacherId,
-        teacherName: localRecord.teacherName,
-        status: localRecord.status,
-        previousStatus,
-        time: exactChangeTime,
-        date: now.toISOString().split('T')[0],
-        targetDate: dateStr,
-        timestamp: Date.now(),
-        read: false,
-        type: isUpdate ? 'update' : 'create',
-        exactChangeTime,
-        message: notifMsg,
-      };
-      setNotifications((prev) => [notif, ...prev]);
-
       return { success: true, record: localRecord, isOffline: true };
     }
 
     try {
-      const res = await fetch('/api/attendance', {
+      // 1. Primary: Save directly to Cloud Firestore
+      await saveAttendanceToFirebase(localRecord);
+      await saveNotificationToFirebase(notif);
+
+      // 2. Also try server endpoint if running with express
+      fetch('/api/attendance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        return { success: false, error: data.error };
-      }
-      return { success: true, record: data.record };
-    } catch {
-      // Offline fallback when network request fails
+      }).catch(() => {});
+
+      return { success: true, record: localRecord };
+    } catch (err) {
+      console.warn('Firebase direct save issue, queuing locally:', err);
       localRecord.isOfflineRecord = true;
       addToOfflineQueue(localRecord);
       setPendingOfflineCount(getOfflineQueue().length);
-
-      setTodayAttendance((prev) => [
-        localRecord,
-        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
-      ]);
-      setAllAttendance((prev) => [
-        localRecord,
-        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
-      ]);
-
-      let notifMsg = '';
-      if (isUpdate) {
-        notifMsg = `⚠️ تعديل حضور: قام المعلم ${teacherName} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${payload.status}] في تمام الساعة ${exactChangeTime} بالتحديد! [📶 تم الحفظ محلياً]`;
-      } else if (dateStr < now.toISOString().split('T')[0]) {
-        notifMsg = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}! [📶 تم الحفظ محلياً]`;
-      } else if (dateStr > now.toISOString().split('T')[0]) {
-        notifMsg = `📅 طلب إجازة مسبقة: قام المعلم ${teacherName} بتقديم (${payload.status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}! [📶 تم الحفظ محلياً]`;
-      } else {
-        notifMsg = `✓ تسجيل دوام: قام المعلم ${teacherName} بتسجيل حالته (${payload.status}) لليوم في تمام الساعة ${exactChangeTime}! [📶 تم الحفظ محلياً]`;
-      }
-
-      const notif: NotificationItem = {
-        id: `notif-${Date.now()}`,
-        teacherId: localRecord.teacherId,
-        teacherName: localRecord.teacherName,
-        status: localRecord.status,
-        previousStatus,
-        time: exactChangeTime,
-        date: now.toISOString().split('T')[0],
-        targetDate: dateStr,
-        timestamp: Date.now(),
-        read: false,
-        type: isUpdate ? 'update' : 'create',
-        exactChangeTime,
-        message: notifMsg,
-      };
-      setNotifications((prev) => [notif, ...prev]);
-
       return { success: true, record: localRecord, isOffline: true };
     }
   };
 
+  // Principal batch attendance marking
   const handleBatchAttendance = async (
     teacherIds: string[],
     status: AttendanceStatus,
@@ -535,58 +452,77 @@ export default function App() {
     const targetDate = date || new Date().toISOString().split('T')[0];
     const timeStr = new Date().toTimeString().split(' ')[0];
 
+    const batchRecords: AttendanceRecord[] = teacherIds.map((tid) => ({
+      id: `${targetDate}_${tid}`,
+      teacherId: tid,
+      teacherName: teachers.find((t) => t.id === tid)?.name || 'معلم',
+      date: targetDate,
+      time: timeStr,
+      status,
+      notes: 'تم التسجيل بواسطة إدارة المدرسة',
+      recordedBy: 'principal',
+      recordedByName: 'مدير المدرسة (لؤي الخطيب)',
+      timestamp: Date.now(),
+    }));
+
+    // Optimistic update
+    setTodayAttendance((prev) => {
+      const map = new Map(prev.map((r) => [r.teacherId, r]));
+      batchRecords.forEach((r) => map.set(r.teacherId, r));
+      return Array.from(map.values());
+    });
+    setAllAttendance((prev) => [...batchRecords, ...prev.filter((r) => !teacherIds.includes(r.teacherId) || r.date !== targetDate)]);
+
     try {
-      const res = await fetch('/api/attendance/batch', {
+      // Save all to Firebase
+      await Promise.all(batchRecords.map((r) => saveAttendanceToFirebase(r)));
+
+      const notif: NotificationItem = {
+        id: `notif-${Date.now()}-batch`,
+        teacherId: 'all',
+        teacherName: 'مدير المدرسة',
+        status,
+        time: timeStr,
+        date: new Date().toISOString().split('T')[0],
+        targetDate,
+        timestamp: Date.now(),
+        read: false,
+        type: 'create',
+        exactChangeTime: timeStr,
+        message: `📋 قام مدير المدرسة بتسجيل حالة (${status}) جماعياً لـ (${teacherIds.length}) معلمين لتاريخ (${targetDate}).`,
+      };
+      await saveNotificationToFirebase(notif);
+
+      // Also try backend if available
+      fetch('/api/attendance/batch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ teacherIds, status, date }),
-      });
-      const data = await res.json();
-      return { success: res.ok, error: data.error };
-    } catch {
-      // Local fallback
-      const batchRecords: AttendanceRecord[] = teacherIds.map((tid) => ({
-        id: `rec-${Date.now()}-${tid}`,
-        teacherId: tid,
-        teacherName: teachers.find((t) => t.id === tid)?.name || 'معلم',
-        date: targetDate,
-        time: timeStr,
-        status,
-        notes: 'تم التسجيل بواسطة إدارة المدرسة',
-        recordedBy: 'principal',
-        recordedByName: 'مدير المدرسة (لؤي الخطيب)',
-        timestamp: Date.now(),
-      }));
+      }).catch(() => {});
 
-      setTodayAttendance((prev) => {
-        const map = new Map(prev.map((r) => [r.teacherId, r]));
-        batchRecords.forEach((r) => map.set(r.teacherId, r));
-        return Array.from(map.values());
-      });
-      setAllAttendance((prev) => [...batchRecords, ...prev]);
-
+      return { success: true };
+    } catch (err: any) {
+      console.warn('Batch attendance save error:', err);
       return { success: true };
     }
   };
 
+  // Delete attendance record
   const handleDeleteAttendance = async (id: string) => {
     try {
-      const res = await fetch(`/api/attendance/${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (res.ok) {
-        setTodayAttendance((prev) => prev.filter((r) => r.id !== id));
-        setAllAttendance((prev) => prev.filter((r) => r.id !== id));
-        return { success: true };
-      }
-      return { success: false, error: data.error };
-    } catch {
+      await deleteAttendanceFromFirebase(id);
+      setTodayAttendance((prev) => prev.filter((r) => r.id !== id));
+      setAllAttendance((prev) => prev.filter((r) => r.id !== id));
+      fetch(`/api/attendance/${id}`, { method: 'DELETE' }).catch(() => {});
+      return { success: true };
+    } catch (err: any) {
       setTodayAttendance((prev) => prev.filter((r) => r.id !== id));
       setAllAttendance((prev) => prev.filter((r) => r.id !== id));
       return { success: true };
     }
   };
 
-  // Teacher CRUD Handlers with static fallback
+  // Staff CRUD Handlers
   const handleAddTeacher = async (teacher: Partial<Teacher>) => {
     const newT: Teacher = {
       id: String(teacher.id).trim(),
@@ -602,85 +538,78 @@ export default function App() {
     };
 
     try {
-      const res = await fetch('/api/teachers', {
+      await saveTeacherToFirebase(newT);
+      setTeachers((prev) => [...prev, newT]);
+      fetch('/api/teachers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(teacher),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setTeachers((prev) => [...prev, data.teacher]);
-        return { success: true };
-      }
-      return { success: false, error: data.error };
-    } catch {
+        body: JSON.stringify(newT),
+      }).catch(() => {});
+      return { success: true };
+    } catch (err: any) {
       setTeachers((prev) => [...prev, newT]);
       return { success: true };
     }
   };
 
   const handleUpdateTeacher = async (id: string, updates: Partial<Teacher>) => {
+    const existing = teachers.find((t) => t.id === id);
+    if (!existing) return { success: false, error: 'المعلم غير موجود' };
+    const updated: Teacher = { ...existing, ...updates };
+
     try {
-      const res = await fetch(`/api/teachers/${id}`, {
+      await saveTeacherToFirebase(updated);
+      setTeachers((prev) => prev.map((t) => (t.id === id ? updated : t)));
+      fetch(`/api/teachers/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setTeachers((prev) => prev.map((t) => (t.id === id ? data.teacher : t)));
-        return { success: true };
-      }
-      return { success: false, error: data.error };
-    } catch {
-      setTeachers((prev) =>
-        prev.map((t) => (t.id === id ? ({ ...t, ...updates } as Teacher) : t))
-      );
+      }).catch(() => {});
+      return { success: true };
+    } catch (err: any) {
+      setTeachers((prev) => prev.map((t) => (t.id === id ? updated : t)));
       return { success: true };
     }
   };
 
   const handleDeleteTeacher = async (id: string) => {
     try {
-      const res = await fetch(`/api/teachers/${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (res.ok) {
-        setTeachers((prev) => prev.filter((t) => t.id !== id));
-        return { success: true };
-      }
-      return { success: false, error: data.error };
+      await deleteTeacherFromFirebase(id);
+      setTeachers((prev) => prev.filter((t) => t.id !== id));
+      fetch(`/api/teachers/${id}`, { method: 'DELETE' }).catch(() => {});
+      return { success: true };
     } catch {
       setTeachers((prev) => prev.filter((t) => t.id !== id));
       return { success: true };
     }
   };
 
-  // Settings Handler with static fallback
+  // Settings Handler
   const handleUpdateSettings = async (newSettings: Partial<GeofenceSettings>) => {
+    const updated: GeofenceSettings = { ...settings, ...newSettings };
     try {
-      const res = await fetch('/api/settings', {
+      await saveSettingsToFirebase(updated);
+      setSettings(updated);
+      fetch('/api/settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newSettings),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setSettings(data.settings);
-        return { success: true };
-      }
-      return { success: false, error: data.error };
-    } catch {
-      setSettings((prev) => ({ ...prev, ...newSettings }));
+      }).catch(() => {});
+      return { success: true };
+    } catch (err: any) {
+      setSettings(updated);
       return { success: true };
     }
   };
 
+  // Notifications Mark as Read
   const handleClearNotifications = async () => {
     try {
-      await fetch('/api/notifications/mark-read', { method: 'POST' });
+      await markAllNotificationsReadInFirebase();
       setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+      fetch('/api/notifications/mark-read', { method: 'POST' }).catch(() => {});
     } catch {
-      // ignore
+      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
     }
   };
 
