@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { NotificationItem, Teacher, GeofenceSettings } from '../types.ts';
 import { formatTimeArabic } from '../utils/export.ts';
+import { PWAInstallButton } from './PWAInstallButton.tsx';
 
 interface HeaderProps {
   currentUser: Teacher | null;
@@ -145,6 +146,9 @@ export const Header: React.FC<HeaderProps> = ({
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
+
+          {/* Install App on Phone PWA Button */}
+          <PWAInstallButton />
 
           {/* Download Project for GitHub Button */}
           <a

@@ -37,7 +37,7 @@ interface TeacherPortalProps {
     longitude?: number;
     customDate?: string;
     recordedBy: 'teacher';
-  }) => Promise<{ success: boolean; error?: string }>;
+  }) => Promise<{ success: boolean; error?: string; isOffline?: boolean; record?: AttendanceRecord }>;
   onChangePassword: (newPass: string) => Promise<{ success: boolean; error?: string }>;
 }
 
@@ -62,6 +62,7 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
   const [departureDuration, setDepartureDuration] = useState('ساعة واحدة');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [offlineSuccessMsg, setOfflineSuccessMsg] = useState<string | null>(null);
 
   // GPS state
   const [gpsLoading, setGpsLoading] = useState(false);
@@ -103,8 +104,10 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
     !settings.enabled || (distanceToSchool !== null && distanceToSchool <= settings.radiusMeters);
 
   const handleSubmitAttendance = async () => {
-    // Check geofence
-    if (settings.enabled && !isWithinGeofence) {
+    const isOffline = typeof navigator !== 'undefined' && !navigator.onLine;
+
+    // Check geofence (if not offline or if distance is known and outside)
+    if (settings.enabled && !isWithinGeofence && !isOffline) {
       setSubmitError(
         `عذراً، لا يمكنك تسجيل الحضور لأنك خارج الموقع الجغرافي للمدرسة (${distanceToSchool || 0} م). النطاق المسموح به: ${settings.radiusMeters} م.`
       );
@@ -112,6 +115,7 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
     }
 
     setSubmitError(null);
+    setOfflineSuccessMsg(null);
     setSubmitting(true);
 
     try {
@@ -135,6 +139,12 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
           origin: { y: 0.6 },
           colors: ['#06b6d4', '#0284c7', '#10b981'],
         });
+
+        if (res.isOffline) {
+          setOfflineSuccessMsg(
+            'تم حفظ تسجيلك بنجاح على ذاكرة هاتفك بدون اتصال بالإنترنت! سيتم إرساله ومزامنته مع إدارة المدرسة تلقائياً فور توفر النت.'
+          );
+        }
       } else {
         setSubmitError(res.error || 'حدث خطأ أثناء حفظ التسجيل');
       }
@@ -437,6 +447,11 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
                           ملاحظة: {recordForDate.notes}
                         </div>
                       )}
+                      {recordForDate.isOfflineRecord && (
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-950/80 border border-amber-500/40 text-amber-300 text-xs font-semibold mt-1">
+                          <span>📶 سُجّل بدون إنترنت (محفوظ محلياً بانتظار المزامنة)</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -460,6 +475,16 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({
               <div className="p-3.5 rounded-2xl bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs sm:text-sm flex items-start gap-2">
                 <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
                 <span>{submitError}</span>
+              </div>
+            )}
+
+            {offlineSuccessMsg && (
+              <div className="p-3.5 rounded-2xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-200 text-xs sm:text-sm flex items-start gap-2 shadow-lg animate-in fade-in">
+                <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-emerald-300">تم الحفظ بنجاح دون اتصال!</div>
+                  <div className="text-emerald-100/90 mt-0.5">{offlineSuccessMsg}</div>
+                </div>
               </div>
             )}
 

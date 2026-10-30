@@ -352,12 +352,15 @@ app.post('/api/attendance', (req: Request, res: Response) => {
   const exactChangeTime = exactNow.toTimeString().split(' ')[0]; // Exact HH:mm:ss
   const currentActionDate = exactNow.toISOString().split('T')[0];
 
+  const isOfflineRecord = req.body.isOfflineRecord === true;
+  const originalTime = req.body.originalRecordedTime || req.body.time;
+
   const newRecord: AttendanceRecord = {
     id: isUpdate ? existingRecord.id : `rec-${Date.now()}-${teacherId}`,
     teacherId: teacher.id,
     teacherName: teacher.name,
     date: dateStr,
-    time: isUpdate ? existingRecord.time : exactChangeTime,
+    time: isOfflineRecord && originalTime ? originalTime : (isUpdate ? existingRecord.time : exactChangeTime),
     status,
     notes: notes || '',
     departureTime,
@@ -373,12 +376,14 @@ app.post('/api/attendance', (req: Request, res: Response) => {
         : existingRecord?.location,
     recordedBy: recordedBy || 'teacher',
     recordedByName: recordedBy === 'principal' ? 'مدير المدرسة (لؤي الخطيب)' : teacher.name,
-    timestamp: isUpdate ? existingRecord.timestamp : Date.now(),
+    timestamp: isUpdate ? existingRecord.timestamp : (req.body.timestamp || Date.now()),
     isModified: isUpdate,
     previousStatus: isUpdate ? previousStatus : undefined,
     lastModifiedAt: Date.now(),
     lastModifiedTime: exactChangeTime,
     lastModifiedDate: currentActionDate,
+    isOfflineRecord: isOfflineRecord || existingRecord?.isOfflineRecord,
+    syncedAt: isOfflineRecord ? Date.now() : undefined,
   };
 
   if (isUpdate) {
@@ -391,18 +396,20 @@ app.post('/api/attendance', (req: Request, res: Response) => {
   let notifType: 'create' | 'update' | 'retroactive' | 'future' = 'create';
   let notifMessage = '';
 
+  const offlineTag = isOfflineRecord ? ' [📶 سُجّل بدون إنترنت وتمت مزامنته الآن]' : '';
+
   if (isUpdate) {
     notifType = 'update';
-    notifMessage = `⚠️ تعديل حضور: قام المعلم ${teacher.name} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${status}] في تمام الساعة ${exactChangeTime} بالتحديد!`;
+    notifMessage = `⚠️ تعديل حضور: قام المعلم ${teacher.name} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${status}] في تمام الساعة ${exactChangeTime} بالتحديد!${offlineTag}`;
   } else if (dateStr < todayStr) {
     notifType = 'retroactive';
-    notifMessage = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacher.name} بتسجيل حالته (${status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+    notifMessage = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacher.name} بتسجيل حالته (${status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}!${offlineTag}`;
   } else if (dateStr > todayStr) {
     notifType = 'future';
-    notifMessage = `📅 طلب إجازة مسبقة: قام المعلم ${teacher.name} بتقديم طلب (${status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+    notifMessage = `📅 طلب إجازة مسبقة: قام المعلم ${teacher.name} بتقديم طلب (${status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}!${offlineTag}`;
   } else {
     notifType = 'create';
-    notifMessage = `✓ تسجيل دوام: قام المعلم ${teacher.name} بتسجيل حالته (${status}) لليوم في تمام الساعة ${exactChangeTime}!`;
+    notifMessage = `✓ تسجيل دوام: قام المعلم ${teacher.name} بتسجيل حالته (${status}) لليوم في تمام الساعة ${exactChangeTime}!${offlineTag}`;
   }
 
   // Create real-time notification for the principal

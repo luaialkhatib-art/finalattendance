@@ -40,6 +40,8 @@ export interface AttendanceRecord {
   lastModifiedAt?: number; // وقت التعديل الدقيق بالمللي ثانية
   lastModifiedTime?: string; // وقت التعديل الدقيق بالثواني HH:mm:ss
   lastModifiedDate?: string; // تاريخ حدوث التعديل
+  isOfflineRecord?: boolean; // هل تم التسجيل أثناء انقطاع الإنترنت
+  syncedAt?: number; // وقت المزامنة مع الخادم
 }
 
 export interface GeofenceSettings {

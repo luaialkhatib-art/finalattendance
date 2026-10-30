@@ -1522,15 +1522,25 @@ export const PrincipalPortal: React.FC<PrincipalPortalProps> = ({
                           <td className="p-2.5 font-mono text-slate-400">{t.phone}</td>
                           <td className="p-2.5">
                             {todayRec ? (
-                              <span
-                                className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
-                                  todayRec.status === 'حاضر'
-                                    ? 'bg-emerald-500/20 text-emerald-300'
-                                    : 'bg-amber-500/20 text-amber-300'
-                                }`}
-                              >
-                                {todayRec.status}
-                              </span>
+                              <div className="flex items-center gap-1.5">
+                                <span
+                                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                                    todayRec.status === 'حاضر'
+                                      ? 'bg-emerald-500/20 text-emerald-300'
+                                      : 'bg-amber-500/20 text-amber-300'
+                                  }`}
+                                >
+                                  {todayRec.status}
+                                </span>
+                                {todayRec.isOfflineRecord && (
+                                  <span
+                                    title="سُجّل بدون إنترنت وتمت مزامنته تلقائياً"
+                                    className="px-1.5 py-0.5 rounded text-[10px] bg-amber-950/80 text-amber-300 border border-amber-500/30 font-semibold"
+                                  >
+                                    أوفلاين 📶
+                                  </span>
+                                )}
+                              </div>
                             ) : (
                               <span className="text-slate-500">لم يسجل</span>
                             )}

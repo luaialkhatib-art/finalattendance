@@ -12,6 +12,19 @@ import {
 } from './types.ts';
 import { INITIAL_GEOFENCE_SETTINGS, INITIAL_TEACHERS } from './data/initialStaff.ts';
 import { sounds } from './utils/audio.ts';
+import {
+  cacheTeachersForOffline,
+  cacheSettingsForOffline,
+  cacheAttendanceRecords,
+  getCachedTeachers,
+  getCachedSettings,
+  getCachedRecords,
+  getOfflineQueue,
+  addToOfflineQueue,
+  syncPendingOfflineRecords,
+} from './utils/offlineSync.ts';
+import { OfflineIndicator } from './components/OfflineIndicator.tsx';
+import { useOnlineStatus } from './hooks/useOnlineStatus.ts';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<Teacher | null>(() => {
@@ -23,14 +36,26 @@ export default function App() {
     }
   });
 
-  const [teachers, setTeachers] = useState<Teacher[]>(INITIAL_TEACHERS);
+  const [teachers, setTeachers] = useState<Teacher[]>(() => {
+    const cached = getCachedTeachers();
+    return cached && cached.length > 0 ? cached : INITIAL_TEACHERS;
+  });
   const [todayAttendance, setTodayAttendance] = useState<AttendanceRecord[]>([]);
-  const [allAttendance, setAllAttendance] = useState<AttendanceRecord[]>([]);
-  const [settings, setSettings] = useState<GeofenceSettings>(INITIAL_GEOFENCE_SETTINGS);
+  const [allAttendance, setAllAttendance] = useState<AttendanceRecord[]>(() => {
+    return getCachedRecords();
+  });
+  const [settings, setSettings] = useState<GeofenceSettings>(() => {
+    const cached = getCachedSettings();
+    return cached ? cached : INITIAL_GEOFENCE_SETTINGS;
+  });
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [isConnected, setIsConnected] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [pushStatus, setPushStatus] = useState<NotificationPermission | 'unsupported'>('default');
+  const [pendingOfflineCount, setPendingOfflineCount] = useState<number>(() => {
+    return getOfflineQueue().length;
+  });
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
 
   // Load initial app data
   const fetchData = useCallback(async () => {
@@ -42,20 +67,40 @@ export default function App() {
 
       if (initRes.ok) {
         const data = await initRes.json();
-        if (data.teachers) setTeachers(data.teachers);
+        if (data.teachers) {
+          setTeachers(data.teachers);
+          cacheTeachersForOffline(data.teachers);
+        }
         if (data.todayAttendance) setTodayAttendance(data.todayAttendance);
-        if (data.settings) setSettings(data.settings);
+        if (data.settings) {
+          setSettings(data.settings);
+          cacheSettingsForOffline(data.settings);
+        }
         if (data.notifications) setNotifications(data.notifications);
         setIsConnected(true);
       }
 
       if (attRes.ok) {
         const attData = await attRes.json();
-        if (attData.records) setAllAttendance(attData.records);
+        if (attData.records) {
+          setAllAttendance(attData.records);
+          cacheAttendanceRecords(attData.records);
+        }
       }
     } catch (err) {
-      console.warn('Initial data fetch error:', err);
+      console.warn('Initial data fetch error (offline active):', err);
       setIsConnected(false);
+      // Restore from local cache
+      const cachedT = getCachedTeachers();
+      if (cachedT && cachedT.length > 0) setTeachers(cachedT);
+      const cachedS = getCachedSettings();
+      if (cachedS) setSettings(cachedS);
+      const cachedA = getCachedRecords();
+      if (cachedA && cachedA.length > 0) {
+        setAllAttendance(cachedA);
+        const todayStr = new Date().toISOString().split('T')[0];
+        setTodayAttendance(cachedA.filter((r) => r.date === todayStr));
+      }
     }
   }, []);
 
@@ -214,6 +259,84 @@ export default function App() {
     };
   }, [fetchData, soundEnabled]);
 
+  // Synchronize pending offline records when network is available
+  const handleSyncPendingOffline = useCallback(async () => {
+    if (typeof navigator !== 'undefined' && !navigator.onLine) return;
+    if (isSyncing) return;
+
+    const queue = getOfflineQueue();
+    if (queue.length === 0) {
+      setPendingOfflineCount(0);
+      return;
+    }
+
+    setIsSyncing(true);
+    try {
+      const result = await syncPendingOfflineRecords(async (record) => {
+        const res = await fetch('/api/attendance', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            teacherId: record.teacherId,
+            status: record.status,
+            notes: record.notes,
+            departureTime: record.departureTime,
+            departureDuration: record.departureDuration,
+            latitude: record.location?.latitude,
+            longitude: record.location?.longitude,
+            customDate: record.date,
+            recordedBy: record.recordedBy,
+            isOfflineRecord: true,
+            originalRecordedTime: record.time,
+            timestamp: record.timestamp,
+          }),
+        });
+
+        if (res.ok) {
+          return { success: true };
+        }
+        const errData = await res.json().catch(() => ({}));
+        return { success: false, error: errData.error };
+      });
+
+      setPendingOfflineCount(result.remainingCount);
+      if (result.syncedCount > 0) {
+        if (soundEnabled) sounds.playSuccessChime();
+        fetchData();
+      }
+    } catch (e) {
+      console.warn('Offline sync error:', e);
+    } finally {
+      setIsSyncing(false);
+    }
+  }, [isSyncing, soundEnabled, fetchData]);
+
+  // Auto-sync whenever returning online
+  useEffect(() => {
+    const onOnline = () => {
+      setIsConnected(true);
+      handleSyncPendingOffline();
+      fetchData();
+    };
+
+    const onOffline = () => {
+      setIsConnected(false);
+    };
+
+    window.addEventListener('online', onOnline);
+    window.addEventListener('offline', onOffline);
+
+    // Initial check on mount
+    if (typeof navigator !== 'undefined' && navigator.onLine) {
+      handleSyncPendingOffline();
+    }
+
+    return () => {
+      window.removeEventListener('online', onOnline);
+      window.removeEventListener('offline', onOffline);
+    };
+  }, [handleSyncPendingOffline, fetchData]);
+
   // Auth Handlers with static fallback
   const handleLogin = async (id: string, pass: string) => {
     try {
@@ -308,6 +431,44 @@ export default function App() {
       lastModifiedDate: now.toISOString().split('T')[0],
     };
 
+    const isOffline = typeof navigator !== 'undefined' && !navigator.onLine;
+
+    // Fast-track offline path
+    if (isOffline) {
+      localRecord.isOfflineRecord = true;
+      addToOfflineQueue(localRecord);
+      setPendingOfflineCount(getOfflineQueue().length);
+
+      setTodayAttendance((prev) => [
+        localRecord,
+        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
+      ]);
+      setAllAttendance((prev) => [
+        localRecord,
+        ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
+      ]);
+
+      const notifMsg = `💾 تسجيل أوفلاين: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ (${dateStr}) بدون اتصال بالإنترنت! تم حفظ السجل بأمان على الهاتف وسيتم إرساله تلقائياً فور توفر النت.`;
+      const notif: NotificationItem = {
+        id: `notif-${Date.now()}`,
+        teacherId: localRecord.teacherId,
+        teacherName: localRecord.teacherName,
+        status: localRecord.status,
+        previousStatus,
+        time: exactChangeTime,
+        date: now.toISOString().split('T')[0],
+        targetDate: dateStr,
+        timestamp: Date.now(),
+        read: false,
+        type: isUpdate ? 'update' : 'create',
+        exactChangeTime,
+        message: notifMsg,
+      };
+      setNotifications((prev) => [notif, ...prev]);
+
+      return { success: true, record: localRecord, isOffline: true };
+    }
+
     try {
       const res = await fetch('/api/attendance', {
         method: 'POST',
@@ -320,7 +481,11 @@ export default function App() {
       }
       return { success: true, record: data.record };
     } catch {
-      // Local fallback
+      // Offline fallback when network request fails
+      localRecord.isOfflineRecord = true;
+      addToOfflineQueue(localRecord);
+      setPendingOfflineCount(getOfflineQueue().length);
+
       setTodayAttendance((prev) => [
         localRecord,
         ...prev.filter((r) => !(r.teacherId === localRecord.teacherId && r.date === localRecord.date)),
@@ -332,13 +497,13 @@ export default function App() {
 
       let notifMsg = '';
       if (isUpdate) {
-        notifMsg = `⚠️ تعديل حضور: قام المعلم ${teacherName} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${payload.status}] في تمام الساعة ${exactChangeTime} بالتحديد!`;
+        notifMsg = `⚠️ تعديل حضور: قام المعلم ${teacherName} بتعديل حالته لتاريخ (${dateStr}) من [${previousStatus}] إلى [${payload.status}] في تمام الساعة ${exactChangeTime} بالتحديد! [📶 تم الحفظ محلياً]`;
       } else if (dateStr < now.toISOString().split('T')[0]) {
-        notifMsg = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+        notifMsg = `🕒 تسجيل بأثر رجعي: قام المعلم ${teacherName} بتسجيل (${payload.status}) لتاريخ سابق (${dateStr}) في تمام الساعة ${exactChangeTime}! [📶 تم الحفظ محلياً]`;
       } else if (dateStr > now.toISOString().split('T')[0]) {
-        notifMsg = `📅 طلب إجازة مسبقة: قام المعلم ${teacherName} بتقديم (${payload.status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}!`;
+        notifMsg = `📅 طلب إجازة مسبقة: قام المعلم ${teacherName} بتقديم (${payload.status}) لتاريخ مستقبلي (${dateStr}) في تمام الساعة ${exactChangeTime}! [📶 تم الحفظ محلياً]`;
       } else {
-        notifMsg = `✓ تسجيل دوام: قام المعلم ${teacherName} بتسجيل حالته (${payload.status}) لليوم في تمام الساعة ${exactChangeTime}!`;
+        notifMsg = `✓ تسجيل دوام: قام المعلم ${teacherName} بتسجيل حالته (${payload.status}) لليوم في تمام الساعة ${exactChangeTime}! [📶 تم الحفظ محلياً]`;
       }
 
       const notif: NotificationItem = {
@@ -358,7 +523,7 @@ export default function App() {
       };
       setNotifications((prev) => [notif, ...prev]);
 
-      return { success: true, record: localRecord };
+      return { success: true, record: localRecord, isOffline: true };
     }
   };
 
@@ -542,6 +707,13 @@ export default function App() {
         onToggleSound={() => setSoundEnabled(!soundEnabled)}
         onRequestPushNotifications={requestPushPermission}
         pushStatus={pushStatus}
+      />
+
+      {/* Offline Connectivity & Pending Sync Bar */}
+      <OfflineIndicator
+        pendingCount={pendingOfflineCount}
+        onManualSync={handleSyncPendingOffline}
+        isSyncing={isSyncing}
       />
 
       {/* Main Content Area */}
